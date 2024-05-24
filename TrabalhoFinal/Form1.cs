@@ -18,7 +18,6 @@ namespace TrabalhoFinal
             PreencherListBox1(GetArtigosAcademico());
             listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             listBoxAA.SelectedIndexChanged += listBoxAA_SelectedIndexChanged;
-
         }
 
         private SqlConnection getSqlConn()
@@ -46,15 +45,16 @@ namespace TrabalhoFinal
                 using (SqlConnection conn = getSqlConn())
                 {
                     conn.Open();
-                    string query = "SELECT ID, Nome FROM Artigo_Papelaria";
+                    string query = "GetArtigosPapelaria";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                // Concatenar ID e Nome
                                 string item = $"{reader["ID"]} - {reader["Nome"]}";
                                 artigosPapelaria.Add(item);
                             }
@@ -71,6 +71,7 @@ namespace TrabalhoFinal
         }
 
 
+
         private List<string> PesquisarArtigosPapelaria(string nome)
         {
             List<string> artigosPapelaria = new List<string>();
@@ -80,18 +81,17 @@ namespace TrabalhoFinal
                 using (SqlConnection conn = getSqlConn())
                 {
                     conn.Open();
-                    string query = "SELECT ID, Nome FROM Artigo_Papelaria WHERE Nome LIKE @nome"; // Ajuste a query conforme sua necessidade
+                    string query = "PesquisarArtigosPapelaria";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        // Usando parâmetros para evitar SQL Injection
-                        cmd.Parameters.AddWithValue("@nome", "%" + nome + "%");
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@nome", nome);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                // Concatenar ID e Nome
                                 string item = $"{reader["ID"]} - {reader["Nome"]}";
                                 artigosPapelaria.Add(item);
                             }
@@ -138,9 +138,10 @@ namespace TrabalhoFinal
                 using (SqlConnection conn = getSqlConn())
                 {
                     conn.Open();
-                    string query = "SELECT Marca, Quantidade, End_Loja FROM Artigo_Papelaria WHERE ID = @id";
+                    string query = "GetArtigoPapelariaDetalhes";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@id", selectedId);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -158,9 +159,10 @@ namespace TrabalhoFinal
 
                     if (thirdChar == 'C')
                     {
-                        query = "SELECT Tipo, Cor FROM Caneta WHERE ID = @id";
+                        query = "GetCanetaDetalhes";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
+                            cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@id", selectedId);
 
                             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -175,9 +177,10 @@ namespace TrabalhoFinal
                     }
                     else if (thirdChar == 'L')
                     {
-                        query = "SELECT Dureza FROM Lapis WHERE ID = @id";
+                        query = "GetLapisDetalhes";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
+                            cmd.CommandType = CommandType.StoredProcedure;
                             cmd.Parameters.AddWithValue("@id", selectedId);
 
                             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -196,7 +199,6 @@ namespace TrabalhoFinal
                 MessageBox.Show("Erro ao buscar detalhes do artigo de papelaria: " + ex.Message);
             }
         }
-
 
 
         private void label1_Click(object sender, EventArgs e)
@@ -222,10 +224,19 @@ namespace TrabalhoFinal
         private void button2_Click(object sender, EventArgs e)
         {
             PesquisarNomeAA.Clear(); // Limpa o texto na textBox PesquisarNome de artigo acadêmico
-
+            labelNomeAA.Text = string.Empty;
+            labelQuantidadeAA.Text = string.Empty;
+            labelEnderecoAA.Text = string.Empty;
+            labelTipoAA.Text = string.Empty;
+            labelCor1AA.Text = string.Empty;
+            labelCor2AA.Text = string.Empty;
+            labelFormaAA.Text = string.Empty;
+            labelUniversidadeAA.Text = string.Empty;
             FiltrarLojaAcademico.SelectedIndex = -1;
             FiltrarArtigoAcademico.SelectedIndex = -1;
             FiltarTipoAcademico.SelectedIndex = -1;
+            List<string> artigosAcademico = GetArtigosAcademico(); // Obtém todos os artigos de academico novamente
+            PreencherListBox1(artigosAcademico); // Atualiza a listBox1 com os artigos de academico
         }
 
         private void PreencherListBox1(List<string> artigosAcademico)
@@ -247,15 +258,16 @@ namespace TrabalhoFinal
                 using (SqlConnection conn = getSqlConn())
                 {
                     conn.Open();
-                    string query = "SELECT ID, Nome FROM Artigo_Academico";
+                    string query = "GetArtigosAcademico";
 
-                    using (SqlCommand c = new SqlCommand(query, conn))
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        using (SqlDataReader reader = c.ExecuteReader())
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                // Concatenar ID e Nome
                                 string item = $"{reader["ID"]} - {reader["Nome"]}";
                                 artigosAcademico.Add(item);
                             }
@@ -265,7 +277,7 @@ namespace TrabalhoFinal
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao buscar artigos de academico: " + ex.Message);
+                MessageBox.Show("Erro ao buscar artigos acadêmicos: " + ex.Message);
             }
 
             return artigosAcademico;
@@ -280,18 +292,17 @@ namespace TrabalhoFinal
                 using (SqlConnection conn = getSqlConn())
                 {
                     conn.Open();
-                    string query = "SELECT ID, Nome FROM Artigo_Academico WHERE Nome LIKE @nome"; // Ajuste a query conforme sua necessidade
+                    string query = "PesquisarArtigosAcademico";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        // Usando parâmetros para evitar SQL Injection
-                        cmd.Parameters.AddWithValue("@nome", "%" + nome + "%");
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@nome", nome);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                // Concatenar ID e Nome
                                 string item = $"{reader["ID"]} - {reader["Nome"]}";
                                 artigosAcademico.Add(item);
                             }
@@ -301,7 +312,7 @@ namespace TrabalhoFinal
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao buscar artigos de academico: " + ex.Message);
+                MessageBox.Show("Erro ao buscar artigos acadêmicos: " + ex.Message);
             }
 
             return artigosAcademico;
@@ -348,7 +359,6 @@ namespace TrabalhoFinal
             List<string> artigosPapelaria = PesquisarArtigosPapelaria(nome);
             PreencherListBox2(artigosPapelaria);
         }
-
         private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
 
@@ -366,13 +376,13 @@ namespace TrabalhoFinal
 
         private void PesquisarAA_Click_1(object sender, EventArgs e)
         {
-            string nome = PesquisarNomeAA.Text; // Assumindo que PesquisarNomeAA é o TextBox onde o nome é inserido
-            List<string> resultados = PesquisarArtigosAcademico(nome);
-            PreencherListBox1(resultados); // Atualiza a ListBox com os resultados da pesquisa
-
+            
+            string nome = PesquisarNomeAA.Text;
+            List<string> artigosAcademico = PesquisarArtigosAcademico(nome);
+            PreencherListBox1(artigosAcademico);
         }
 
-        private void PesquisarNomeTraje_TextChanged(object sender, EventArgs e)
+            private void PesquisarNomeTraje_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -407,135 +417,192 @@ namespace TrabalhoFinal
             if (listBoxAA.SelectedItem == null)
                 return;
 
-            string selectedItemAA = listBoxAA.SelectedItem.ToString();
-            string selectedIdAA = selectedItemAA.Split('-')[0].Trim();
+            string selectedItem = listBoxAA.SelectedItem.ToString();
+            string selectedId = selectedItem.Split('-')[0].Trim();
 
             // Limpa os Labels
             labelNomeAA.Text = string.Empty;
             labelQuantidadeAA.Text = string.Empty;
             labelEnderecoAA.Text = string.Empty;
+            labelFormaAA.Text = string.Empty;
             labelTipoAA.Text = string.Empty;
+            labelUniversidadeAA.Text = string.Empty;
             labelCor1AA.Text = string.Empty;
             labelCor2AA.Text = string.Empty;
-            labelFormaAA.Text = string.Empty;
-            labelUniversidadeAA.Text = string.Empty;
 
             try
             {
                 using (SqlConnection conn = getSqlConn())
                 {
                     conn.Open();
-                    string query = "SELECT Nome, Quantidade, End_Loja FROM Artigo_Academico WHERE ID = @id";
-                    using (SqlCommand cmd = new SqlCommand(query, conn))
+
+                    // Primeira parte: Obter detalhes básicos do artigo acadêmico
+                    try
                     {
-                        cmd.Parameters.AddWithValue("@id", selectedIdAA);
-
-                        using (SqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                labelNomeAA.Text = reader["Nome"].ToString();
-                                labelQuantidadeAA.Text = reader["Quantidade"].ToString();
-                                labelEnderecoAA.Text = reader["End_Loja"].ToString();
-                            }
-                        }
-                    }
-
-                    char thirdChar = selectedIdAA.Length > 2 ? selectedIdAA[2] : '\0';
-
-                    if (thirdChar == 'E')
-                    {
-                        query = "SELECT Forma, Tipo FROM Emblemas WHERE ID = @id";
+                        string query = "GetArtigoAcademicoDetalhes";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@id", selectedIdAA);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@id", selectedId);
 
                             using (SqlDataReader reader = cmd.ExecuteReader())
                             {
                                 if (reader.Read())
                                 {
-                                    labelFormaAA.Text = reader["Forma"].ToString();
-                                    labelTipoAA.Text = reader["Tipo"].ToString();
+                                    labelNomeAA.Text = reader["Nome"].ToString();
+                                    labelQuantidadeAA.Text = reader["Quantidade"].ToString();
+                                    labelEnderecoAA.Text = reader["End_Loja"].ToString();
                                 }
                             }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao buscar detalhes do artigo acadêmico (GetArtigoAcademicoDetalhes): " + ex.Message + "\nStackTrace: " + ex.StackTrace);
+                        return;
+                    }
+
+                    char thirdChar = selectedId.Length > 2 ? selectedId[2] : '\0';
+
+                    if (thirdChar == 'E')
+                    {
+                        try
+                        {
+                            string query = "GetEmblemaDetalhes";
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
+                            {
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@id", selectedId);
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        labelFormaAA.Text = reader["Forma"].ToString();
+                                        labelTipoAA.Text = reader["Tipo"].ToString();
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erro ao buscar detalhes do emblema: " + ex.Message);
                         }
                     }
                     else if (thirdChar == 'P')
                     {
-                        query = "SELECT Tipo FROM Pins WHERE ID = @id";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@id", selectedIdAA);
-
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            string query = "GetPinDetalhes";
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
                             {
-                                if (reader.Read())
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@id", selectedId);
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
                                 {
-                                    labelTipoAA.Text = reader["Tipo"].ToString();
+                                    if (reader.Read())
+                                    {
+                                        labelTipoAA.Text = reader["Tipo"].ToString();
+                                    }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erro ao buscar detalhes do pin: " + ex.Message);
                         }
                     }
                     else if (thirdChar == 'T')
                     {
-                        query = "SELECT Tipo FROM Pastas WHERE ID = @id";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@id", selectedIdAA);
-
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            string query = "GetPastaDetalhes";
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
                             {
-                                if (reader.Read())
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@id", selectedId);
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
                                 {
-                                    labelTipoAA.Text = reader["Tipo"].ToString();
+                                    if (reader.Read())
+                                    {
+                                        labelUniversidadeAA.Text = reader["Universidade"].ToString();
+                                    }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erro ao buscar detalhes da pasta: " + ex.Message);
                         }
                     }
                     else if (thirdChar == 'C')
                     {
-                        query = "SELECT Universidade FROM Chapeus WHERE ID = @id";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@id", selectedIdAA);
-
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            string query = "GetChapeuDetalhes";
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
                             {
-                                if (reader.Read())
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@id", selectedId);
+
+                                using (SqlDataReader reader = cmd.ExecuteReader())
                                 {
-                                    labelUniversidadeAA.Text = reader["Universidade"].ToString();
+                                    if (reader.Read())
+                                    {
+                                        labelUniversidadeAA.Text = reader["Universidade"].ToString();
+                                    }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erro ao buscar detalhes do chapéu: " + ex.Message);
                         }
                     }
                     else if (thirdChar == 'N')
                     {
-                        query = "SELECT Tipo, Cor1, Cor2 FROM Nos WHERE ID = @id";
-                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        try
                         {
-                            cmd.Parameters.AddWithValue("@id", selectedIdAA);
-
-                            using (SqlDataReader reader = cmd.ExecuteReader())
+                            string query = "GetNoDetalhes";
+                            using (SqlCommand cmd = new SqlCommand(query, conn))
                             {
-                                if (reader.Read())
-                                {
-                                    labelTipoAA.Text = reader["Tipo"].ToString();
-                                    labelCor1AA.Text = reader["Cor1"].ToString();
-                                    labelCor2AA.Text = reader["Cor2"].ToString();
+                                cmd.CommandType = CommandType.StoredProcedure;
+                                cmd.Parameters.AddWithValue("@id", selectedId);
 
+                                using (SqlDataReader reader = cmd.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        labelTipoAA.Text = reader["Tipo"].ToString();
+                                        labelCor1AA.Text = reader["Cor1"].ToString();
+                                        labelCor2AA.Text = reader["Cor2"].ToString();
+                                    }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Erro ao buscar detalhes do nó: " + ex.Message);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao buscar detalhes do artigo de papelaria: " + ex.Message);
+                MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message);
             }
         }
 
+
+
         private void labelNomeAA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
         {
 
         }

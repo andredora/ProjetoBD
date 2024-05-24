@@ -533,11 +533,12 @@
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Artigos de papelaria";
             tabPage2.UseVisualStyleBackColor = true;
+            tabPage2.Click += tabPage2_Click;
             // 
             // LabelDurezaAP
             // 
             LabelDurezaAP.BackColor = Color.LightSkyBlue;
-            LabelDurezaAP.Location = new Point(800, 330);
+            LabelDurezaAP.Location = new Point(800, 352);
             LabelDurezaAP.Name = "LabelDurezaAP";
             LabelDurezaAP.Size = new Size(151, 27);
             LabelDurezaAP.TabIndex = 53;
@@ -545,7 +546,7 @@
             // LabelCorAP
             // 
             LabelCorAP.BackColor = Color.LightSkyBlue;
-            LabelCorAP.Location = new Point(623, 330);
+            LabelCorAP.Location = new Point(623, 352);
             LabelCorAP.Name = "LabelCorAP";
             LabelCorAP.Size = new Size(151, 27);
             LabelCorAP.TabIndex = 52;
@@ -553,7 +554,7 @@
             // LabelTipoAP
             // 
             LabelTipoAP.BackColor = Color.LightSkyBlue;
-            LabelTipoAP.Location = new Point(443, 330);
+            LabelTipoAP.Location = new Point(443, 352);
             LabelTipoAP.Name = "LabelTipoAP";
             LabelTipoAP.Size = new Size(151, 27);
             LabelTipoAP.TabIndex = 51;
@@ -561,7 +562,7 @@
             // LabelEnderecoAP
             // 
             LabelEnderecoAP.BackColor = Color.LightSkyBlue;
-            LabelEnderecoAP.Location = new Point(443, 238);
+            LabelEnderecoAP.Location = new Point(443, 260);
             LabelEnderecoAP.Name = "LabelEnderecoAP";
             LabelEnderecoAP.Size = new Size(508, 27);
             LabelEnderecoAP.TabIndex = 50;
@@ -569,7 +570,7 @@
             // LabelQuantidadeAP
             // 
             LabelQuantidadeAP.BackColor = Color.LightSkyBlue;
-            LabelQuantidadeAP.Location = new Point(730, 153);
+            LabelQuantidadeAP.Location = new Point(730, 175);
             LabelQuantidadeAP.Name = "LabelQuantidadeAP";
             LabelQuantidadeAP.Size = new Size(221, 27);
             LabelQuantidadeAP.TabIndex = 49;
@@ -577,7 +578,7 @@
             // LabelMarcaAP
             // 
             LabelMarcaAP.BackColor = Color.LightSkyBlue;
-            LabelMarcaAP.Location = new Point(443, 153);
+            LabelMarcaAP.Location = new Point(443, 175);
             LabelMarcaAP.Name = "LabelMarcaAP";
             LabelMarcaAP.Size = new Size(265, 27);
             LabelMarcaAP.TabIndex = 48;
@@ -585,7 +586,7 @@
             // label20
             // 
             label20.AutoSize = true;
-            label20.Location = new Point(800, 307);
+            label20.Location = new Point(800, 329);
             label20.Name = "label20";
             label20.Size = new Size(56, 20);
             label20.TabIndex = 47;
@@ -594,7 +595,7 @@
             // label21
             // 
             label21.AutoSize = true;
-            label21.Location = new Point(833, 360);
+            label21.Location = new Point(833, 382);
             label21.Name = "label21";
             label21.Size = new Size(0, 20);
             label21.TabIndex = 45;
@@ -602,7 +603,7 @@
             // label18
             // 
             label18.AutoSize = true;
-            label18.Location = new Point(623, 307);
+            label18.Location = new Point(623, 329);
             label18.Name = "label18";
             label18.Size = new Size(32, 20);
             label18.TabIndex = 44;
@@ -611,7 +612,7 @@
             // label19
             // 
             label19.AutoSize = true;
-            label19.Location = new Point(656, 360);
+            label19.Location = new Point(656, 382);
             label19.Name = "label19";
             label19.Size = new Size(0, 20);
             label19.TabIndex = 42;
@@ -619,7 +620,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(443, 307);
+            label16.Location = new Point(443, 329);
             label16.Name = "label16";
             label16.Size = new Size(39, 20);
             label16.TabIndex = 41;
@@ -628,7 +629,7 @@
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(476, 360);
+            label17.Location = new Point(476, 382);
             label17.Name = "label17";
             label17.Size = new Size(0, 20);
             label17.TabIndex = 39;
@@ -636,7 +637,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(443, 218);
+            label15.Location = new Point(443, 240);
             label15.Name = "label15";
             label15.Size = new Size(124, 20);
             label15.TabIndex = 38;
@@ -645,7 +646,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(730, 130);
+            label14.Location = new Point(730, 152);
             label14.Name = "label14";
             label14.Size = new Size(87, 20);
             label14.TabIndex = 36;
@@ -654,7 +655,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(443, 130);
+            label13.Location = new Point(443, 152);
             label13.Name = "label13";
             label13.Size = new Size(50, 20);
             label13.TabIndex = 35;
@@ -663,7 +664,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(476, 183);
+            label12.Location = new Point(476, 205);
             label12.Name = "label12";
             label12.Size = new Size(0, 20);
             label12.TabIndex = 32;
