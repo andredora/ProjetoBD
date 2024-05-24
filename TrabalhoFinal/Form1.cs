@@ -18,7 +18,12 @@ namespace TrabalhoFinal
             PreencherListBox1(GetArtigosAcademico());
             listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             listBoxAA.SelectedIndexChanged += listBoxAA_SelectedIndexChanged;
+
+            // Adicione estas linhas
+            List<string> lojasAcademico = GetLojasAcademico();
+            PreencherComboBoxLojasAcademico(lojasAcademico);
         }
+
 
         private SqlConnection getSqlConn()
         {
@@ -606,5 +611,48 @@ namespace TrabalhoFinal
         {
 
         }
+
+        private List<string> GetLojasAcademico()
+        {
+            List<string> lojasAcademico = new List<string>();
+
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    string query = "GetLojasAcademico"; // Nome da stored procedure
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                lojasAcademico.Add(reader["End_Loja"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar endereços das lojas acadêmicas: " + ex.Message);
+            }
+
+            return lojasAcademico;
+        }
+        private void PreencherComboBoxLojasAcademico(List<string> lojas)
+        {
+            FiltrarLojaAcademico.Items.Clear(); // Limpa os itens existentes
+
+            foreach (string loja in lojas)
+            {
+                FiltrarLojaAcademico.Items.Add(loja);
+            }
+        }
+
     }
 }
