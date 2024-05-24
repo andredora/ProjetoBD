@@ -53,15 +53,15 @@
             label36 = new Label();
             label37 = new Label();
             FiltrarLojaAcademico = new ComboBox();
-            button1 = new Button();
+            AdicionarButtonAA = new Button();
             label9 = new Label();
             comboBox4 = new ComboBox();
             PesquisarAA = new Button();
-            button12 = new Button();
+            AlterarButtonAA = new Button();
             label5 = new Label();
             FiltarTipoAcademico = new ComboBox();
             listBoxAA = new ListBox();
-            button2 = new Button();
+            RemoverButtonAA = new Button();
             label2 = new Label();
             label1 = new Label();
             FiltrarArtigoAcademico = new ComboBox();
@@ -87,15 +87,15 @@
             FiltrarLojaAP = new ComboBox();
             label10 = new Label();
             comboBox5 = new ComboBox();
-            button11 = new Button();
+            AlterarButtonAP = new Button();
             listBox2 = new ListBox();
-            button3 = new Button();
-            button4 = new Button();
+            RemoverButtonAP = new Button();
+            AdicionarButtonAP = new Button();
             label3 = new Label();
             label4 = new Label();
             FiltrarArtigoPapelaria = new ComboBox();
-            button5 = new Button();
-            button6 = new Button();
+            LimparButtonAP = new Button();
+            PesquisarButtonAP = new Button();
             PesquisarNomePapelaria = new TextBox();
             tabPage3 = new TabPage();
             label11 = new Label();
@@ -154,15 +154,15 @@
             tabPage1.Controls.Add(label36);
             tabPage1.Controls.Add(label37);
             tabPage1.Controls.Add(FiltrarLojaAcademico);
-            tabPage1.Controls.Add(button1);
+            tabPage1.Controls.Add(AdicionarButtonAA);
             tabPage1.Controls.Add(label9);
             tabPage1.Controls.Add(comboBox4);
             tabPage1.Controls.Add(PesquisarAA);
-            tabPage1.Controls.Add(button12);
+            tabPage1.Controls.Add(AlterarButtonAA);
             tabPage1.Controls.Add(label5);
             tabPage1.Controls.Add(FiltarTipoAcademico);
             tabPage1.Controls.Add(listBoxAA);
-            tabPage1.Controls.Add(button2);
+            tabPage1.Controls.Add(RemoverButtonAA);
             tabPage1.Controls.Add(label2);
             tabPage1.Controls.Add(label1);
             tabPage1.Controls.Add(FiltrarArtigoAcademico);
@@ -364,14 +364,15 @@
             FiltrarLojaAcademico.TabIndex = 32;
             FiltrarLojaAcademico.SelectedIndexChanged += FiltrarLojaAcademico_SelectedIndexChanged;
             // 
-            // button1
+            // AdicionarButtonAA
             // 
-            button1.Location = new Point(824, 488);
-            button1.Name = "button1";
-            button1.Size = new Size(104, 49);
-            button1.TabIndex = 29;
-            button1.Text = "Adicionar";
-            button1.UseVisualStyleBackColor = true;
+            AdicionarButtonAA.Location = new Point(824, 488);
+            AdicionarButtonAA.Name = "AdicionarButtonAA";
+            AdicionarButtonAA.Size = new Size(104, 49);
+            AdicionarButtonAA.TabIndex = 29;
+            AdicionarButtonAA.Text = "Adicionar";
+            AdicionarButtonAA.UseVisualStyleBackColor = true;
+            AdicionarButtonAA.Click += AdicionarButtonAA_Click;
             // 
             // label9
             // 
@@ -400,14 +401,15 @@
             PesquisarAA.UseVisualStyleBackColor = true;
             PesquisarAA.Click += PesquisarAA_Click_1;
             // 
-            // button12
+            // AlterarButtonAA
             // 
-            button12.Location = new Point(604, 488);
-            button12.Name = "button12";
-            button12.Size = new Size(104, 49);
-            button12.TabIndex = 25;
-            button12.Text = "Alterar";
-            button12.UseVisualStyleBackColor = true;
+            AlterarButtonAA.Location = new Point(604, 488);
+            AlterarButtonAA.Name = "AlterarButtonAA";
+            AlterarButtonAA.Size = new Size(104, 49);
+            AlterarButtonAA.TabIndex = 25;
+            AlterarButtonAA.Text = "Alterar";
+            AlterarButtonAA.UseVisualStyleBackColor = true;
+            AlterarButtonAA.Click += AlterarButtonAA_Click;
             // 
             // label5
             // 
@@ -436,15 +438,15 @@
             listBoxAA.TabIndex = 10;
             listBoxAA.SelectedIndexChanged += listBoxAA_SelectedIndexChanged;
             // 
-            // button2
+            // RemoverButtonAA
             // 
-            button2.Location = new Point(714, 488);
-            button2.Name = "button2";
-            button2.Size = new Size(104, 49);
-            button2.TabIndex = 9;
-            button2.Text = "Remover";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click_1;
+            RemoverButtonAA.Location = new Point(714, 488);
+            RemoverButtonAA.Name = "RemoverButtonAA";
+            RemoverButtonAA.Size = new Size(104, 49);
+            RemoverButtonAA.TabIndex = 9;
+            RemoverButtonAA.Text = "Remover";
+            RemoverButtonAA.UseVisualStyleBackColor = true;
+            RemoverButtonAA.Click += RemoverButtonAA_Click_1;
             // 
             // label2
             // 
@@ -483,7 +485,7 @@
             LimparButton.TabIndex = 2;
             LimparButton.Text = "Limpar";
             LimparButton.UseVisualStyleBackColor = true;
-            LimparButton.Click += button2_Click;
+            LimparButton.Click += LimparButtonAA_Click;
             // 
             // PesquisarNomeAA
             // 
@@ -516,15 +518,15 @@
             tabPage2.Controls.Add(FiltrarLojaAP);
             tabPage2.Controls.Add(label10);
             tabPage2.Controls.Add(comboBox5);
-            tabPage2.Controls.Add(button11);
+            tabPage2.Controls.Add(AlterarButtonAP);
             tabPage2.Controls.Add(listBox2);
-            tabPage2.Controls.Add(button3);
-            tabPage2.Controls.Add(button4);
+            tabPage2.Controls.Add(RemoverButtonAP);
+            tabPage2.Controls.Add(AdicionarButtonAP);
             tabPage2.Controls.Add(label3);
             tabPage2.Controls.Add(label4);
             tabPage2.Controls.Add(FiltrarArtigoPapelaria);
-            tabPage2.Controls.Add(button5);
-            tabPage2.Controls.Add(button6);
+            tabPage2.Controls.Add(LimparButtonAP);
+            tabPage2.Controls.Add(PesquisarButtonAP);
             tabPage2.Controls.Add(PesquisarNomePapelaria);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
@@ -695,15 +697,15 @@
             comboBox5.Size = new Size(151, 28);
             comboBox5.TabIndex = 29;
             // 
-            // button11
+            // AlterarButtonAP
             // 
-            button11.Location = new Point(604, 488);
-            button11.Name = "button11";
-            button11.Size = new Size(104, 49);
-            button11.TabIndex = 21;
-            button11.Text = "Alterar";
-            button11.UseVisualStyleBackColor = true;
-            button11.Click += button11_Click;
+            AlterarButtonAP.Location = new Point(604, 488);
+            AlterarButtonAP.Name = "AlterarButtonAP";
+            AlterarButtonAP.Size = new Size(104, 49);
+            AlterarButtonAP.TabIndex = 21;
+            AlterarButtonAP.Text = "Alterar";
+            AlterarButtonAP.UseVisualStyleBackColor = true;
+            AlterarButtonAP.Click += AlterarButtonAP_Click;
             // 
             // listBox2
             // 
@@ -713,23 +715,25 @@
             listBox2.Size = new Size(373, 384);
             listBox2.TabIndex = 20;
             // 
-            // button3
+            // RemoverButtonAP
             // 
-            button3.Location = new Point(714, 488);
-            button3.Name = "button3";
-            button3.Size = new Size(104, 49);
-            button3.TabIndex = 19;
-            button3.Text = "Remover";
-            button3.UseVisualStyleBackColor = true;
+            RemoverButtonAP.Location = new Point(714, 488);
+            RemoverButtonAP.Name = "RemoverButtonAP";
+            RemoverButtonAP.Size = new Size(104, 49);
+            RemoverButtonAP.TabIndex = 19;
+            RemoverButtonAP.Text = "Remover";
+            RemoverButtonAP.UseVisualStyleBackColor = true;
+            RemoverButtonAP.Click += RemoverButtonAP_Click;
             // 
-            // button4
+            // AdicionarButtonAP
             // 
-            button4.Location = new Point(824, 488);
-            button4.Name = "button4";
-            button4.Size = new Size(104, 49);
-            button4.TabIndex = 18;
-            button4.Text = "Adicionar";
-            button4.UseVisualStyleBackColor = true;
+            AdicionarButtonAP.Location = new Point(824, 488);
+            AdicionarButtonAP.Name = "AdicionarButtonAP";
+            AdicionarButtonAP.Size = new Size(104, 49);
+            AdicionarButtonAP.TabIndex = 18;
+            AdicionarButtonAP.Text = "Adicionar";
+            AdicionarButtonAP.UseVisualStyleBackColor = true;
+            AdicionarButtonAP.Click += AdicionarButtonAP_Click;
             // 
             // label3
             // 
@@ -757,25 +761,25 @@
             FiltrarArtigoPapelaria.Size = new Size(193, 28);
             FiltrarArtigoPapelaria.TabIndex = 15;
             // 
-            // button5
+            // LimparButtonAP
             // 
-            button5.Location = new Point(146, 79);
-            button5.Name = "button5";
-            button5.Size = new Size(86, 28);
-            button5.TabIndex = 13;
-            button5.Text = "Limpar";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            LimparButtonAP.Location = new Point(146, 79);
+            LimparButtonAP.Name = "LimparButtonAP";
+            LimparButtonAP.Size = new Size(86, 28);
+            LimparButtonAP.TabIndex = 13;
+            LimparButtonAP.Text = "Limpar";
+            LimparButtonAP.UseVisualStyleBackColor = true;
+            LimparButtonAP.Click += LimparButtonAP_Click;
             // 
-            // button6
+            // PesquisarButtonAP
             // 
-            button6.Location = new Point(54, 80);
-            button6.Name = "button6";
-            button6.Size = new Size(86, 27);
-            button6.TabIndex = 12;
-            button6.Text = "Pesquisar";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click_1;
+            PesquisarButtonAP.Location = new Point(54, 80);
+            PesquisarButtonAP.Name = "PesquisarButtonAP";
+            PesquisarButtonAP.Size = new Size(86, 27);
+            PesquisarButtonAP.TabIndex = 12;
+            PesquisarButtonAP.Text = "Pesquisar";
+            PesquisarButtonAP.UseVisualStyleBackColor = true;
+            PesquisarButtonAP.Click += PesquisarButtonAP_Click_1;
             // 
             // PesquisarNomePapelaria
             // 
@@ -973,16 +977,16 @@
         private ComboBox FiltrarArtigoAcademico;
         private Label label1;
         private Label label2;
-        private Button button2;
+        private Button RemoverButtonAA;
         private ListBox listBoxAA;
         private ListBox listBox2;
-        private Button button3;
-        private Button button4;
+        private Button RemoverButtonAP;
+        private Button AdicionarButtonAP;
         private Label label3;
         private Label label4;
         private ComboBox FiltrarArtigoPapelaria;
-        private Button button5;
-        private Button button6;
+        private Button LimparButtonAP;
+        private Button PesquisarButtonAP;
         private TextBox PesquisarNomePapelaria;
         private Label label5;
         private ComboBox FiltarTipoAcademico;
@@ -998,8 +1002,8 @@
         private Button LimparTraje;
         private Button button10;
         private TextBox PesquisarNomeTraje;
-        private Button button11;
-        private Button button12;
+        private Button AlterarButtonAP;
+        private Button AlterarButtonAA;
         private Button button13;
         private Button PesquisarAA;
         private Label label9;
@@ -1008,7 +1012,7 @@
         private ComboBox comboBox5;
         private Label label11;
         private ComboBox comboBox6;
-        private Button button1;
+        private Button AdicionarButtonAA;
         private ComboBox FiltrarLojaAcademico;
         private ComboBox FiltrarLojaAP;
         private Label label12;

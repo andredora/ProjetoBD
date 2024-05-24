@@ -226,7 +226,7 @@ namespace TrabalhoFinal
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void LimparButtonAA_Click(object sender, EventArgs e)
         {
             PesquisarNomeAA.Clear(); // Limpa o texto na textBox PesquisarNome de artigo acadêmico
             labelNomeAA.Text = string.Empty;
@@ -330,7 +330,7 @@ namespace TrabalhoFinal
 
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void RemoverButtonAA_Click_1(object sender, EventArgs e)
         {
 
         }
@@ -341,7 +341,7 @@ namespace TrabalhoFinal
 
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void LimparButtonAP_Click(object sender, EventArgs e)
         {
             PesquisarNomePapelaria.Clear(); // Limpa o texto na TextBox1
             FiltrarLojaAP.SelectedIndex = -1; // Redefine a seleção na ComboBox1
@@ -358,7 +358,7 @@ namespace TrabalhoFinal
             PreencherListBox2(artigosPapelaria); // Atualiza a listBox2 com os artigos de papelaria
         }
 
-        private void button6_Click_1(object sender, EventArgs e)
+        private void PesquisarButtonAP_Click_1(object sender, EventArgs e)
         {
             string nome = PesquisarNomePapelaria.Text;
             List<string> artigosPapelaria = PesquisarArtigosPapelaria(nome);
@@ -374,20 +374,20 @@ namespace TrabalhoFinal
 
         }
 
-        private void button11_Click(object sender, EventArgs e)
+        private void AlterarButtonAP_Click(object sender, EventArgs e)
         {
 
         }
 
         private void PesquisarAA_Click_1(object sender, EventArgs e)
         {
-            
+
             string nome = PesquisarNomeAA.Text;
             List<string> artigosAcademico = PesquisarArtigosAcademico(nome);
             PreencherListBox1(artigosAcademico);
         }
 
-            private void PesquisarNomeTraje_TextChanged(object sender, EventArgs e)
+        private void PesquisarNomeTraje_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -654,5 +654,24 @@ namespace TrabalhoFinal
             }
         }
 
+        private void AlterarButtonAA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AdicionarButtonAA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoverButtonAP_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AdicionarButtonAP_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
