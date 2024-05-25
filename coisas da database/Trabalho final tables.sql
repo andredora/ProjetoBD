@@ -56,6 +56,7 @@ CREATE TABLE NoA (
 
 CREATE TABLE Traje (
 	ID CHAR(6) NOT NULL PRIMARY KEY,
+	Nome VARCHAR(60) NOT NULL,
 	Num_Acessorios int NOT NULL,
 	Num_Pecas int NOT NULL,
 	Completo Bit NOT NULL,
