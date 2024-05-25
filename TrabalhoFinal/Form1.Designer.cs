@@ -263,6 +263,7 @@
             // labelNomeAA
             // 
             labelNomeAA.BackColor = Color.LightSkyBlue;
+            labelNomeAA.ForeColor = SystemColors.ControlText;
             labelNomeAA.Location = new Point(443, 175);
             labelNomeAA.Name = "labelNomeAA";
             labelNomeAA.Size = new Size(265, 27);

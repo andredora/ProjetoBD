@@ -211,6 +211,13 @@ namespace TrabalhoFinal
             {
                 MessageBox.Show("Erro ao buscar detalhes do artigo de papelaria: " + ex.Message);
             }
+            SetLabelColor(LabelMarcaAP);
+            SetLabelColor(LabelQuantidadeAP);
+            SetLabelColor(LabelEnderecoAP);
+            SetLabelColor(LabelTipoAP);
+            SetLabelColor(LabelCorAP);
+            SetLabelColor(LabelDurezaAP);
+
         }
 
 
@@ -760,8 +767,29 @@ namespace TrabalhoFinal
             {
                 MessageBox.Show("Erro ao conectar ao banco de dados: " + ex.Message);
             }
+
+            // Define a cor dos labels
+            SetLabelColor(labelNomeAA);
+            SetLabelColor(labelQuantidadeAA);
+            SetLabelColor(labelEnderecoAA);
+            SetLabelColor(labelFormaAA);
+            SetLabelColor(labelTipoAA);
+            SetLabelColor(labelUniversidadeAA);
+            SetLabelColor(labelCor1AA);
+            SetLabelColor(labelCor2AA);
         }
 
+        private void SetLabelColor(Label label)
+        {
+            if (string.IsNullOrEmpty(label.Text))
+            {
+                label.BackColor = Color.Gainsboro;
+            }
+            else
+            {
+                label.BackColor = Color.LightSkyBlue;
+            }
+        }
 
 
         private void labelNomeAA_Click(object sender, EventArgs e)

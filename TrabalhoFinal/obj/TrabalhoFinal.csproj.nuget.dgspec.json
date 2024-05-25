@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj": {}
+    "C:\\Users\\andre\\OneDrive\\Ambiente de Trabalho\\2ANO_2SEMESTRE\\BD\\projeto\\ProjetoBD\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj": {
+    "C:\\Users\\andre\\OneDrive\\Ambiente de Trabalho\\2ANO_2SEMESTRE\\BD\\projeto\\ProjetoBD\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj",
+        "projectUniqueName": "C:\\Users\\andre\\OneDrive\\Ambiente de Trabalho\\2ANO_2SEMESTRE\\BD\\projeto\\ProjetoBD\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj",
         "projectName": "TrabalhoFinal",
-        "projectPath": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj",
-        "packagesPath": "C:\\Users\\fromt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\obj\\",
+        "projectPath": "C:\\Users\\andre\\OneDrive\\Ambiente de Trabalho\\2ANO_2SEMESTRE\\BD\\projeto\\ProjetoBD\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\andre\\OneDrive\\Ambiente de Trabalho\\2ANO_2SEMESTRE\\BD\\projeto\\ProjetoBD\\ProjetoBD\\TrabalhoFinal\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fromt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\andre\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
