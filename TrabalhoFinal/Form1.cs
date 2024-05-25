@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Http.Headers;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -21,7 +22,14 @@ namespace TrabalhoFinal
 
             // Adicione estas linhas
             List<string> lojasAcademico = GetLojasAcademico();
+            List<string> lojasPapelaria = GetLojasPapelaria();
             PreencherComboBoxLojasAcademico(lojasAcademico);
+            PreencherComboBoxLojasPapelaria(lojasPapelaria);
+
+            // PREencher as cenas dos filtros confia
+            PreencherFiltrarArtigoAcademico();
+            PreencherFiltrarArtigoPapelaria();
+            FiltarTipoAcademico.Enabled = false;
         }
 
 
@@ -215,12 +223,87 @@ namespace TrabalhoFinal
         {
 
         }
+        private void PreencherFiltrarArtigoAcademico()
+        {
+            List<string> artigos = ["Chapéus", "Emblemas", "Nós", "Pastas", "Pins"];
+            foreach (string artigo in artigos)
+            {
+                FiltrarArtigoAcademico.Items.Add(artigo);
+            }
+        }
+
+        private void PreencherFiltrarArtigoPapelaria()
+        {
+            List<string> artigos = ["Caneta", "Lápis"];
+            foreach (string artigo in artigos)
+            {
+                FiltrarArtigoPapelaria.Items.Add(artigo);
+            }
+
+        }
+
+
+        private void FiltrarArtigoAcademico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltarTipoAcademicoMudarLista();
+        }
+
+        private void FiltarTipoAcademicoMudarLista()
+        {
+            // Obtem o item selecionado no ComboBox FiltrarArtigoAcademico
+            string selecionado = FiltrarArtigoAcademico.SelectedItem?.ToString();
+
+            if (string.IsNullOrEmpty(selecionado))
+            {
+                FiltarTipoAcademico.Enabled = false;
+                FiltarTipoAcademico.Items.Clear();
+                return;
+            }
+
+            List<string> itens = null;
+
+            switch (selecionado)
+            {
+                case "Nós":
+                    FiltarTipoAcademico.SelectedIndex = -1;
+                    itens = new List<string> { "Azelha", "Coxim Redondo" };
+                    break;
+                case "Emblemas":
+                    FiltarTipoAcademico.SelectedIndex = -1;
+                    itens = new List<string>
+            {
+                "AAUAv", "Animais", "Cidades", "Clash Royale", "Comida",
+                "Cursos", "Familia", "Harry Potter", "Países e Regiões",
+                "Séries", "Signos", "Super Heróis", "Universidades"
+            };
+                    break;
+                case "Pins":
+                    FiltarTipoAcademico.SelectedIndex = -1;
+                    itens = new List<string> { "Alfinete", "Tacha" };
+                    break;
+                default:
+                    FiltarTipoAcademico.SelectedIndex = -1;
+                    FiltarTipoAcademico.Enabled = false;
+                    FiltarTipoAcademico.Items.Clear();
+                    return;
+            }
+
+            // Preenche o ComboBox FiltarTipoAcademico com os itens correspondentes
+            FiltarTipoAcademico.Items.Clear();
+            foreach (string item in itens)
+            {
+                FiltarTipoAcademico.Items.Add(item);
+            }
+
+            // Ativa o ComboBox FiltarTipoAcademico
+            FiltarTipoAcademico.Enabled = true;
+        }
+
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         private void PesquisarAA_Click(object sender, EventArgs e)
         {
 
@@ -239,7 +322,10 @@ namespace TrabalhoFinal
             labelUniversidadeAA.Text = string.Empty;
             FiltrarLojaAcademico.SelectedIndex = -1;
             FiltrarArtigoAcademico.SelectedIndex = -1;
+            FiltrarArtigoAcademico.Text = string.Empty;
+            FiltarTipoAcademico.Enabled = false;
             FiltarTipoAcademico.SelectedIndex = -1;
+            FiltarTipoAcademico.Text = string.Empty;
             List<string> artigosAcademico = GetArtigosAcademico(); // Obtém todos os artigos de academico novamente
             PreencherListBox1(artigosAcademico); // Atualiza a listBox1 com os artigos de academico
         }
@@ -372,6 +458,7 @@ namespace TrabalhoFinal
         private void FiltarTipoAcademico_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+
         }
 
         private void AlterarButtonAP_Click(object sender, EventArgs e)
@@ -404,11 +491,86 @@ namespace TrabalhoFinal
 
         private void FiltrarLojaAP_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Obtem a loja selecionada
+            if (FiltrarLojaAP.SelectedItem == null)
+            {
+                return; // Se nada estiver selecionado, não faça nada
+            }
+            string lojaSelecionada = FiltrarLojaAP.SelectedItem.ToString();
+            List<string> artigosAcademico = new List<string>();
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    string query = "GetPapelariaPorLoja"; // Nome da stored procedure
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@EnderecoLoja", lojaSelecionada);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                string item = $"{reader["ID"]} - {reader["Nome"]}";
+                                artigosAcademico.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar endereços das lojas acadêmicas: " + ex.Message);
+            }
+
+
+            PreencherListBox2(artigosAcademico);
+
 
         }
 
         private void FiltrarLojaAcademico_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Obtem a loja selecionada
+            if (FiltrarLojaAcademico.SelectedItem == null)
+            {
+                return; // Se nada estiver selecionado, não faça nada
+            }
+            string lojaSelecionada = FiltrarLojaAcademico.SelectedItem.ToString();
+            List<string> artigosAcademico = new List<string>();
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    string query = "GetArtigosPorLoja"; // Nome da stored procedure
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@EnderecoLoja", lojaSelecionada);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                string item = $"{reader["ID"]} - {reader["Nome"]}";
+                                artigosAcademico.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar endereços das lojas acadêmicas: " + ex.Message);
+            }
+
+
+            PreencherListBox1(artigosAcademico);
 
         }
 
@@ -644,6 +806,39 @@ namespace TrabalhoFinal
 
             return lojasAcademico;
         }
+
+        private List<string> GetLojasPapelaria()
+        {
+            List<string> LojasPapelaria = new List<string>();
+
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    string query = "GetLojasPapelaria"; // Nome da stored procedure
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                LojasPapelaria.Add(reader["End_Loja"].ToString());
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar endereços das lojas com papelaria: " + ex.Message);
+            }
+
+            return LojasPapelaria;
+        }
         private void PreencherComboBoxLojasAcademico(List<string> lojas)
         {
             FiltrarLojaAcademico.Items.Clear(); // Limpa os itens existentes
@@ -653,6 +848,17 @@ namespace TrabalhoFinal
                 FiltrarLojaAcademico.Items.Add(loja);
             }
         }
+
+        private void PreencherComboBoxLojasPapelaria(List<string> lojas)
+        {
+            FiltrarLojaAP.Items.Clear(); // Limpa os itens existentes
+
+            foreach (string loja in lojas)
+            {
+                FiltrarLojaAP.Items.Add(loja);
+            }
+        }
+
 
         private void AlterarButtonAA_Click(object sender, EventArgs e)
         {
@@ -670,6 +876,11 @@ namespace TrabalhoFinal
         }
 
         private void AdicionarButtonAP_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FiltrarArtigoPapelaria_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

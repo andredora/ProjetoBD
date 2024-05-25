@@ -475,7 +475,7 @@
             FiltrarArtigoAcademico.Name = "FiltrarArtigoAcademico";
             FiltrarArtigoAcademico.Size = new Size(193, 28);
             FiltrarArtigoAcademico.TabIndex = 4;
-            FiltrarArtigoAcademico.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            FiltrarArtigoAcademico.SelectedIndexChanged += FiltrarArtigoAcademico_SelectedIndexChanged;
             // 
             // LimparButton
             // 
@@ -760,6 +760,7 @@
             FiltrarArtigoPapelaria.Name = "FiltrarArtigoPapelaria";
             FiltrarArtigoPapelaria.Size = new Size(193, 28);
             FiltrarArtigoPapelaria.TabIndex = 15;
+            FiltrarArtigoPapelaria.SelectedIndexChanged += FiltrarArtigoPapelaria_SelectedIndexChanged;
             // 
             // LimparButtonAP
             // 
@@ -910,6 +911,7 @@
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(193, 28);
             comboBox2.TabIndex = 29;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // comboBox3
             // 

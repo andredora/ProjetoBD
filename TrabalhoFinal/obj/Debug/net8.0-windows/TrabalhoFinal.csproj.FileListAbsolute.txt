@@ -22,3 +22,28 @@ C:\Users\andre\source\repos\TrabalhoFinal\bin\Debug\net8.0-windows\runtimes\unix
 C:\Users\andre\source\repos\TrabalhoFinal\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\andre\source\repos\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.csproj.AssemblyReference.cache
 C:\Users\andre\source\repos\TrabalhoFinal\obj\Debug\net8.0-windows\Trabalho.1FBAD070.Up2Date
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\TrabalhoFinal.exe
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\TrabalhoFinal.deps.json
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\TrabalhoFinal.runtimeconfig.json
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\TrabalhoFinal.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\TrabalhoFinal.pdb
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.csproj.AssemblyReference.cache
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.Form1.resources
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.csproj.GenerateResource.cache
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.AssemblyInfoInputs.cache
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.AssemblyInfo.cs
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.csproj.CoreCompileInputs.cache
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.sourcelink.json
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\Trabalho.1FBAD070.Up2Date
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\refint\TrabalhoFinal.dll
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.pdb
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\TrabalhoFinal.genruntimeconfig.cache
+C:\Users\fromt\Desktop\bd final\ProjetoBD\TrabalhoFinal\obj\Debug\net8.0-windows\ref\TrabalhoFinal.dll
