@@ -17,6 +17,9 @@ namespace TrabalhoFinal
             checkDBConn();
             PreencherListBox2(GetArtigosPapelaria()); // Chama o método para preencher a ListBox ao iniciar o formulário
             PreencherListBox1(GetArtigosAcademico());
+            PreencherPecasDoTraje(GetPecasDoTraje());
+
+
             listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged;
             listBoxAA.SelectedIndexChanged += listBoxAA_SelectedIndexChanged;
 
@@ -82,6 +85,41 @@ namespace TrabalhoFinal
 
             return artigosPapelaria;
         }
+        private List<string> GetPecasDoTraje()
+        {
+            List<string> pecasTraje = new List<string>();
+
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    string query = "GetPecasDoTraje";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string item = $"{reader["ID"]} - {reader["Nome"]}";
+                                pecasTraje.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar peças do traje: " + ex.Message);
+            }
+
+            return pecasTraje;
+        }
+
+
 
 
 
@@ -127,6 +165,16 @@ namespace TrabalhoFinal
             foreach (string artigo in artigosPapelaria)
             {
                 listBox2.Items.Add(artigo);
+            }
+        }
+
+        private void PreencherPecasDoTraje(List<String> pecasDoTraje)
+        {
+            listBox3.Items.Clear(); // Limpa os itens existentes
+
+            foreach (string artigo in pecasDoTraje)
+            {
+                listBox3.Items.Add(artigo);
             }
         }
 
@@ -268,12 +316,15 @@ namespace TrabalhoFinal
             }
 
             List<string> itens = null;
+            List<string> items = null;
+
 
             switch (selecionado)
             {
                 case "Nós":
                     FiltarTipoAcademico.SelectedIndex = -1;
                     itens = new List<string> { "Azelha", "Coxim Redondo" };
+                    selecionado = "NoA";
                     break;
                 case "Emblemas":
                     FiltarTipoAcademico.SelectedIndex = -1;
@@ -283,10 +334,19 @@ namespace TrabalhoFinal
                 "Cursos", "Familia", "Harry Potter", "Países e Regiões",
                 "Séries", "Signos", "Super Heróis", "Universidades"
             };
+                    selecionado = "Emblema";
+
                     break;
                 case "Pins":
                     FiltarTipoAcademico.SelectedIndex = -1;
                     itens = new List<string> { "Alfinete", "Tacha" };
+                    selecionado = "Pin";
+                    break;
+                case "Pastas":
+                    selecionado = "Pasta";
+                    break;
+                case "Chapéus":
+                    selecionado = "Chapeu";
                     break;
                 default:
                     FiltarTipoAcademico.SelectedIndex = -1;
@@ -296,15 +356,77 @@ namespace TrabalhoFinal
             }
 
             // Preenche o ComboBox FiltarTipoAcademico com os itens correspondentes
-            FiltarTipoAcademico.Items.Clear();
-            foreach (string item in itens)
-            {
-                FiltarTipoAcademico.Items.Add(item);
-            }
+
+            FiltarTipoAcademico.DataSource = itens;
+
+            items = GetItensPorTipo(selecionado);
 
             // Ativa o ComboBox FiltarTipoAcademico
             FiltarTipoAcademico.Enabled = true;
+            if (itens == null)
+            {
+                FiltarTipoAcademico.Enabled = false;
+            }
+            listBoxAA.Items.Clear();
+            foreach (string item in items)
+            {
+                listBoxAA.Items.Add(item);
+            }
+
         }
+
+
+        private List<string> GetItensPorTipo(string tipo)
+        {
+            List<string> itens = new List<string>();
+
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    // Lista de tabelas válidas
+                    List<string> validTables = new List<string> { "NoA", "Emblema", "Pin", "Pasta", "Chapeu" };
+
+                    if (!validTables.Contains(tipo))
+                    {
+                        throw new ArgumentException("Tipo inválido.");
+                    }
+
+                    // Query SQL construída dinamicamente para fazer a junção
+                    string query = $@"
+                SELECT {tipo}.ID, artigo_academico.Nome
+                FROM {tipo}
+                INNER JOIN artigo_academico ON {tipo}.ID = artigo_academico.ID;
+            ";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string item = $"{reader["ID"]} - {reader["Nome"]}";
+                                itens.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar itens por tipo: " + ex.Message);
+            }
+
+            return itens;
+        }
+
+
+
+
+
 
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -583,6 +705,58 @@ namespace TrabalhoFinal
 
         private void labelEnderecoAA_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBox3.SelectedItem == null)
+                return;
+
+
+            string selectedItem = listBox3.SelectedItem.ToString();
+            string selectedId = selectedItem.Split('-')[0].Trim();
+
+            UniPT.Text = string.Empty;
+            GeneroPT.Text = string.Empty;
+            TamanhoPT.Text = string.Empty;
+            LojaPT.Text = string.Empty;
+            QuantPT.Text = string.Empty;
+            NomePT.Text = string.Empty;
+
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    string query = "GetPecaDoTrajeDetalhes"; // Nome da stored procedure
+                    using (SqlCommand command = new SqlCommand(query, conn))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@id", selectedId);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+
+                            while (reader.Read())
+                            {
+                                UniPT.Text = reader["Universidade"].ToString();
+                                GeneroPT.Text = reader["Genero"].ToString();
+                                TamanhoPT.Text = reader["Tamanho"].ToString();
+                                LojaPT.Text = reader["End_Loja"].ToString();
+                                QuantPT.Text = reader["Quantidade"].ToString();
+                                NomePT.Text = reader["Nome"].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar detalhes da peça: " + ex.Message);
+            }
+
+
 
         }
 
@@ -923,9 +1097,14 @@ namespace TrabalhoFinal
 
         }
 
-        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBox2_SelectedIndexChanged_1(object sender, EventArgs e)
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        } // BAddPeca
     }
 }

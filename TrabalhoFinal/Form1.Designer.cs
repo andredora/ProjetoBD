@@ -128,13 +128,14 @@
             PesquisarPT = new Button();
             PesquisarNomeTraje = new TextBox();
             tabPage4 = new TabPage();
+            listBoxItems = new ListBox();
             BNovoTraje = new Button();
             PesquisarTraje = new Button();
             listBoxTrajes = new ListBox();
             BRemoverItem = new Button();
             LimparTraje = new Button();
             textBox1 = new TextBox();
-            listBoxItems = new ListBox();
+            BAddPeca = new Button();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -750,6 +751,7 @@
             listBox2.Name = "listBox2";
             listBox2.Size = new Size(373, 384);
             listBox2.TabIndex = 20;
+            listBox2.SelectedIndexChanged += listBox2_SelectedIndexChanged_1;
             // 
             // RemoverButtonAP
             // 
@@ -829,6 +831,7 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(BAddPeca);
             tabPage3.Controls.Add(UniPT);
             tabPage3.Controls.Add(GeneroPT);
             tabPage3.Controls.Add(TamanhoPT);
@@ -869,9 +872,9 @@
             // UniPT
             // 
             UniPT.BackColor = Color.LightSkyBlue;
-            UniPT.Location = new Point(800, 352);
+            UniPT.Location = new Point(443, 431);
             UniPT.Name = "UniPT";
-            UniPT.Size = new Size(151, 27);
+            UniPT.Size = new Size(331, 27);
             UniPT.TabIndex = 119;
             // 
             // GeneroPT
@@ -918,7 +921,7 @@
             // label66
             // 
             label66.AutoSize = true;
-            label66.Location = new Point(800, 329);
+            label66.Location = new Point(441, 411);
             label66.Name = "label66";
             label66.Size = new Size(95, 20);
             label66.TabIndex = 113;
@@ -1128,6 +1131,14 @@
             tabPage4.Text = "Traje";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // listBoxItems
+            // 
+            listBoxItems.FormattingEnabled = true;
+            listBoxItems.Location = new Point(576, 153);
+            listBoxItems.Name = "listBoxItems";
+            listBoxItems.Size = new Size(375, 324);
+            listBoxItems.TabIndex = 91;
+            // 
             // BNovoTraje
             // 
             BNovoTraje.Location = new Point(847, 38);
@@ -1180,13 +1191,15 @@
             textBox1.Size = new Size(290, 27);
             textBox1.TabIndex = 76;
             // 
-            // listBoxItems
+            // BAddPeca
             // 
-            listBoxItems.FormattingEnabled = true;
-            listBoxItems.Location = new Point(576, 153);
-            listBoxItems.Name = "listBoxItems";
-            listBoxItems.Size = new Size(375, 324);
-            listBoxItems.TabIndex = 91;
+            BAddPeca.Location = new Point(801, 79);
+            BAddPeca.Name = "BAddPeca";
+            BAddPeca.Size = new Size(150, 49);
+            BAddPeca.TabIndex = 120;
+            BAddPeca.Text = "Adicionar ao Traje";
+            BAddPeca.UseVisualStyleBackColor = true;
+            BAddPeca.Click += button1_Click;
             // 
             // Form1
             // 
@@ -1317,5 +1330,6 @@
         private Label label72;
         private Button BNovoTraje;
         private ListBox listBoxItems;
+        private Button BAddPeca;
     }
 }
