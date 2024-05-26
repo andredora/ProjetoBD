@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl = new TabControl();
             tabPage1 = new TabPage();
+            AdicionarAoTrajebuttonAA = new Button();
             labelFormaAA = new Label();
             label41 = new Label();
             label42 = new Label();
@@ -98,25 +99,47 @@
             PesquisarButtonAP = new Button();
             PesquisarNomePapelaria = new TextBox();
             tabPage3 = new TabPage();
+            UniPT = new Label();
+            GeneroPT = new Label();
+            TamanhoPT = new Label();
+            LojaPT = new Label();
+            QuantPT = new Label();
+            NomePT = new Label();
+            label66 = new Label();
+            label67 = new Label();
+            label68 = new Label();
+            label69 = new Label();
+            label70 = new Label();
+            label71 = new Label();
+            label72 = new Label();
             label11 = new Label();
-            comboBox6 = new ComboBox();
+            OrdenarPorPT = new ComboBox();
             button13 = new Button();
             label6 = new Label();
-            comboBox1 = new ComboBox();
+            FiltrarGPT = new ComboBox();
             listBox3 = new ListBox();
             button7 = new Button();
             button8 = new Button();
             label7 = new Label();
             label8 = new Label();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            LimparTraje = new Button();
-            button10 = new Button();
+            FiltrarUniPT = new ComboBox();
+            FiltrarLojaPT = new ComboBox();
+            LimparPT = new Button();
+            PesquisarPT = new Button();
             PesquisarNomeTraje = new TextBox();
+            tabPage4 = new TabPage();
+            BNovoTraje = new Button();
+            PesquisarTraje = new Button();
+            listBoxTrajes = new ListBox();
+            BRemoverItem = new Button();
+            LimparTraje = new Button();
+            textBox1 = new TextBox();
+            listBoxItems = new ListBox();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
+            tabPage4.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl
@@ -124,6 +147,7 @@
             tabControl.Controls.Add(tabPage1);
             tabControl.Controls.Add(tabPage2);
             tabControl.Controls.Add(tabPage3);
+            tabControl.Controls.Add(tabPage4);
             tabControl.Location = new Point(0, 0);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
@@ -132,6 +156,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(AdicionarAoTrajebuttonAA);
             tabPage1.Controls.Add(labelFormaAA);
             tabPage1.Controls.Add(label41);
             tabPage1.Controls.Add(label42);
@@ -176,6 +201,16 @@
             tabPage1.Tag = "Artigos Académicos";
             tabPage1.Text = "Artigos Académicos";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // AdicionarAoTrajebuttonAA
+            // 
+            AdicionarAoTrajebuttonAA.Location = new Point(800, 81);
+            AdicionarAoTrajebuttonAA.Name = "AdicionarAoTrajebuttonAA";
+            AdicionarAoTrajebuttonAA.Size = new Size(150, 49);
+            AdicionarAoTrajebuttonAA.TabIndex = 75;
+            AdicionarAoTrajebuttonAA.Text = "Adicionar ao Traje";
+            AdicionarAoTrajebuttonAA.UseVisualStyleBackColor = true;
+            AdicionarAoTrajebuttonAA.Click += AdicionarAoTrajebuttonAA_Click;
             // 
             // labelFormaAA
             // 
@@ -367,7 +402,7 @@
             // 
             // AdicionarButtonAA
             // 
-            AdicionarButtonAA.Location = new Point(824, 488);
+            AdicionarButtonAA.Location = new Point(847, 488);
             AdicionarButtonAA.Name = "AdicionarButtonAA";
             AdicionarButtonAA.Size = new Size(104, 49);
             AdicionarButtonAA.TabIndex = 29;
@@ -404,7 +439,7 @@
             // 
             // AlterarButtonAA
             // 
-            AlterarButtonAA.Location = new Point(604, 488);
+            AlterarButtonAA.Location = new Point(627, 488);
             AlterarButtonAA.Name = "AlterarButtonAA";
             AlterarButtonAA.Size = new Size(104, 49);
             AlterarButtonAA.TabIndex = 25;
@@ -441,7 +476,7 @@
             // 
             // RemoverButtonAA
             // 
-            RemoverButtonAA.Location = new Point(714, 488);
+            RemoverButtonAA.Location = new Point(737, 488);
             RemoverButtonAA.Name = "RemoverButtonAA";
             RemoverButtonAA.Size = new Size(104, 49);
             RemoverButtonAA.TabIndex = 9;
@@ -700,7 +735,7 @@
             // 
             // AlterarButtonAP
             // 
-            AlterarButtonAP.Location = new Point(604, 488);
+            AlterarButtonAP.Location = new Point(627, 488);
             AlterarButtonAP.Name = "AlterarButtonAP";
             AlterarButtonAP.Size = new Size(104, 49);
             AlterarButtonAP.TabIndex = 21;
@@ -718,7 +753,7 @@
             // 
             // RemoverButtonAP
             // 
-            RemoverButtonAP.Location = new Point(714, 488);
+            RemoverButtonAP.Location = new Point(737, 488);
             RemoverButtonAP.Name = "RemoverButtonAP";
             RemoverButtonAP.Size = new Size(104, 49);
             RemoverButtonAP.TabIndex = 19;
@@ -728,7 +763,7 @@
             // 
             // AdicionarButtonAP
             // 
-            AdicionarButtonAP.Location = new Point(824, 488);
+            AdicionarButtonAP.Location = new Point(847, 488);
             AdicionarButtonAP.Name = "AdicionarButtonAP";
             AdicionarButtonAP.Size = new Size(104, 49);
             AdicionarButtonAP.TabIndex = 18;
@@ -794,29 +829,154 @@
             // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(UniPT);
+            tabPage3.Controls.Add(GeneroPT);
+            tabPage3.Controls.Add(TamanhoPT);
+            tabPage3.Controls.Add(LojaPT);
+            tabPage3.Controls.Add(QuantPT);
+            tabPage3.Controls.Add(NomePT);
+            tabPage3.Controls.Add(label66);
+            tabPage3.Controls.Add(label67);
+            tabPage3.Controls.Add(label68);
+            tabPage3.Controls.Add(label69);
+            tabPage3.Controls.Add(label70);
+            tabPage3.Controls.Add(label71);
+            tabPage3.Controls.Add(label72);
             tabPage3.Controls.Add(label11);
-            tabPage3.Controls.Add(comboBox6);
+            tabPage3.Controls.Add(OrdenarPorPT);
             tabPage3.Controls.Add(button13);
             tabPage3.Controls.Add(label6);
-            tabPage3.Controls.Add(comboBox1);
+            tabPage3.Controls.Add(FiltrarGPT);
             tabPage3.Controls.Add(listBox3);
             tabPage3.Controls.Add(button7);
             tabPage3.Controls.Add(button8);
             tabPage3.Controls.Add(label7);
             tabPage3.Controls.Add(label8);
-            tabPage3.Controls.Add(comboBox2);
-            tabPage3.Controls.Add(comboBox3);
-            tabPage3.Controls.Add(LimparTraje);
-            tabPage3.Controls.Add(button10);
+            tabPage3.Controls.Add(FiltrarUniPT);
+            tabPage3.Controls.Add(FiltrarLojaPT);
+            tabPage3.Controls.Add(LimparPT);
+            tabPage3.Controls.Add(PesquisarPT);
             tabPage3.Controls.Add(PesquisarNomeTraje);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
             tabPage3.Size = new Size(976, 563);
             tabPage3.TabIndex = 2;
-            tabPage3.Text = "Traje";
+            tabPage3.Text = "Peças do Traje";
             tabPage3.UseVisualStyleBackColor = true;
             tabPage3.Click += tabPage3_Click;
+            // 
+            // UniPT
+            // 
+            UniPT.BackColor = Color.LightSkyBlue;
+            UniPT.Location = new Point(800, 352);
+            UniPT.Name = "UniPT";
+            UniPT.Size = new Size(151, 27);
+            UniPT.TabIndex = 119;
+            // 
+            // GeneroPT
+            // 
+            GeneroPT.BackColor = Color.LightSkyBlue;
+            GeneroPT.Location = new Point(623, 352);
+            GeneroPT.Name = "GeneroPT";
+            GeneroPT.Size = new Size(151, 27);
+            GeneroPT.TabIndex = 118;
+            // 
+            // TamanhoPT
+            // 
+            TamanhoPT.BackColor = Color.LightSkyBlue;
+            TamanhoPT.Location = new Point(443, 352);
+            TamanhoPT.Name = "TamanhoPT";
+            TamanhoPT.Size = new Size(151, 27);
+            TamanhoPT.TabIndex = 117;
+            // 
+            // LojaPT
+            // 
+            LojaPT.BackColor = Color.LightSkyBlue;
+            LojaPT.Location = new Point(443, 260);
+            LojaPT.Name = "LojaPT";
+            LojaPT.Size = new Size(508, 27);
+            LojaPT.TabIndex = 116;
+            // 
+            // QuantPT
+            // 
+            QuantPT.BackColor = Color.LightSkyBlue;
+            QuantPT.Location = new Point(730, 175);
+            QuantPT.Name = "QuantPT";
+            QuantPT.Size = new Size(221, 27);
+            QuantPT.TabIndex = 115;
+            // 
+            // NomePT
+            // 
+            NomePT.BackColor = Color.LightSkyBlue;
+            NomePT.ForeColor = SystemColors.ControlText;
+            NomePT.Location = new Point(443, 175);
+            NomePT.Name = "NomePT";
+            NomePT.Size = new Size(265, 27);
+            NomePT.TabIndex = 114;
+            // 
+            // label66
+            // 
+            label66.AutoSize = true;
+            label66.Location = new Point(800, 329);
+            label66.Name = "label66";
+            label66.Size = new Size(95, 20);
+            label66.TabIndex = 113;
+            label66.Text = "Universidade";
+            // 
+            // label67
+            // 
+            label67.AutoSize = true;
+            label67.Location = new Point(623, 329);
+            label67.Name = "label67";
+            label67.Size = new Size(57, 20);
+            label67.TabIndex = 112;
+            label67.Text = "Género";
+            // 
+            // label68
+            // 
+            label68.AutoSize = true;
+            label68.Location = new Point(443, 329);
+            label68.Name = "label68";
+            label68.Size = new Size(69, 20);
+            label68.TabIndex = 111;
+            label68.Text = "Tamanho";
+            label68.Click += label68_Click;
+            // 
+            // label69
+            // 
+            label69.AutoSize = true;
+            label69.Location = new Point(443, 240);
+            label69.Name = "label69";
+            label69.Size = new Size(124, 20);
+            label69.TabIndex = 110;
+            label69.Text = "Endereço da Loja";
+            // 
+            // label70
+            // 
+            label70.AutoSize = true;
+            label70.Location = new Point(730, 152);
+            label70.Name = "label70";
+            label70.Size = new Size(87, 20);
+            label70.TabIndex = 109;
+            label70.Text = "Quantidade";
+            // 
+            // label71
+            // 
+            label71.AutoSize = true;
+            label71.Location = new Point(443, 152);
+            label71.Name = "label71";
+            label71.Size = new Size(50, 20);
+            label71.TabIndex = 108;
+            label71.Text = "Nome";
+            // 
+            // label72
+            // 
+            label72.AutoSize = true;
+            label72.Location = new Point(476, 205);
+            label72.Name = "label72";
+            label72.Size = new Size(0, 20);
+            label72.TabIndex = 107;
             // 
             // label11
             // 
@@ -827,17 +987,17 @@
             label11.TabIndex = 39;
             label11.Text = "Ordenar por:";
             // 
-            // comboBox6
+            // OrdenarPorPT
             // 
-            comboBox6.FormattingEnabled = true;
-            comboBox6.Location = new Point(443, 102);
-            comboBox6.Name = "comboBox6";
-            comboBox6.Size = new Size(151, 28);
-            comboBox6.TabIndex = 38;
+            OrdenarPorPT.FormattingEnabled = true;
+            OrdenarPorPT.Location = new Point(443, 102);
+            OrdenarPorPT.Name = "OrdenarPorPT";
+            OrdenarPorPT.Size = new Size(151, 28);
+            OrdenarPorPT.TabIndex = 38;
             // 
             // button13
             // 
-            button13.Location = new Point(604, 488);
+            button13.Location = new Point(626, 488);
             button13.Name = "button13";
             button13.Size = new Size(104, 49);
             button13.TabIndex = 37;
@@ -853,13 +1013,13 @@
             label6.TabIndex = 36;
             label6.Text = "Filtrar por Género";
             // 
-            // comboBox1
+            // FiltrarGPT
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(799, 38);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 35;
+            FiltrarGPT.FormattingEnabled = true;
+            FiltrarGPT.Location = new Point(799, 38);
+            FiltrarGPT.Name = "FiltrarGPT";
+            FiltrarGPT.Size = new Size(151, 28);
+            FiltrarGPT.TabIndex = 35;
             // 
             // listBox3
             // 
@@ -868,10 +1028,11 @@
             listBox3.Name = "listBox3";
             listBox3.Size = new Size(373, 384);
             listBox3.TabIndex = 34;
+            listBox3.SelectedIndexChanged += listBox3_SelectedIndexChanged;
             // 
             // button7
             // 
-            button7.Location = new Point(714, 488);
+            button7.Location = new Point(736, 488);
             button7.Name = "button7";
             button7.Size = new Size(104, 49);
             button7.TabIndex = 33;
@@ -880,7 +1041,7 @@
             // 
             // button8
             // 
-            button8.Location = new Point(824, 488);
+            button8.Location = new Point(846, 488);
             button8.Name = "button8";
             button8.Size = new Size(104, 49);
             button8.TabIndex = 32;
@@ -905,41 +1066,41 @@
             label8.TabIndex = 30;
             label8.Text = "Filtrar por Loja";
             // 
-            // comboBox2
+            // FiltrarUniPT
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(600, 38);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(193, 28);
-            comboBox2.TabIndex = 29;
-            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            FiltrarUniPT.FormattingEnabled = true;
+            FiltrarUniPT.Location = new Point(600, 38);
+            FiltrarUniPT.Name = "FiltrarUniPT";
+            FiltrarUniPT.Size = new Size(193, 28);
+            FiltrarUniPT.TabIndex = 29;
+            FiltrarUniPT.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
-            // comboBox3
+            // FiltrarLojaPT
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(443, 38);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(151, 28);
-            comboBox3.TabIndex = 28;
+            FiltrarLojaPT.FormattingEnabled = true;
+            FiltrarLojaPT.Location = new Point(443, 38);
+            FiltrarLojaPT.Name = "FiltrarLojaPT";
+            FiltrarLojaPT.Size = new Size(151, 28);
+            FiltrarLojaPT.TabIndex = 28;
             // 
-            // LimparTraje
+            // LimparPT
             // 
-            LimparTraje.Location = new Point(146, 79);
-            LimparTraje.Name = "LimparTraje";
-            LimparTraje.Size = new Size(86, 28);
-            LimparTraje.TabIndex = 27;
-            LimparTraje.Text = "Limpar";
-            LimparTraje.UseVisualStyleBackColor = true;
-            LimparTraje.Click += LimparTraje_Click;
+            LimparPT.Location = new Point(146, 79);
+            LimparPT.Name = "LimparPT";
+            LimparPT.Size = new Size(86, 28);
+            LimparPT.TabIndex = 27;
+            LimparPT.Text = "Limpar";
+            LimparPT.UseVisualStyleBackColor = true;
+            LimparPT.Click += LimparTraje_Click;
             // 
-            // button10
+            // PesquisarPT
             // 
-            button10.Location = new Point(54, 79);
-            button10.Name = "button10";
-            button10.Size = new Size(86, 27);
-            button10.TabIndex = 26;
-            button10.Text = "Pesquisar";
-            button10.UseVisualStyleBackColor = true;
+            PesquisarPT.Location = new Point(54, 80);
+            PesquisarPT.Name = "PesquisarPT";
+            PesquisarPT.Size = new Size(86, 27);
+            PesquisarPT.TabIndex = 26;
+            PesquisarPT.Text = "Pesquisar";
+            PesquisarPT.UseVisualStyleBackColor = true;
             // 
             // PesquisarNomeTraje
             // 
@@ -949,6 +1110,83 @@
             PesquisarNomeTraje.Size = new Size(290, 27);
             PesquisarNomeTraje.TabIndex = 25;
             PesquisarNomeTraje.TextChanged += PesquisarNomeTraje_TextChanged;
+            // 
+            // tabPage4
+            // 
+            tabPage4.Controls.Add(listBoxItems);
+            tabPage4.Controls.Add(BNovoTraje);
+            tabPage4.Controls.Add(PesquisarTraje);
+            tabPage4.Controls.Add(listBoxTrajes);
+            tabPage4.Controls.Add(BRemoverItem);
+            tabPage4.Controls.Add(LimparTraje);
+            tabPage4.Controls.Add(textBox1);
+            tabPage4.Location = new Point(4, 29);
+            tabPage4.Name = "tabPage4";
+            tabPage4.Padding = new Padding(3);
+            tabPage4.Size = new Size(976, 563);
+            tabPage4.TabIndex = 3;
+            tabPage4.Text = "Traje";
+            tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // BNovoTraje
+            // 
+            BNovoTraje.Location = new Point(847, 38);
+            BNovoTraje.Name = "BNovoTraje";
+            BNovoTraje.Size = new Size(104, 49);
+            BNovoTraje.TabIndex = 90;
+            BNovoTraje.Text = "Novo Traje";
+            BNovoTraje.UseVisualStyleBackColor = true;
+            // 
+            // PesquisarTraje
+            // 
+            PesquisarTraje.Location = new Point(54, 80);
+            PesquisarTraje.Name = "PesquisarTraje";
+            PesquisarTraje.Size = new Size(86, 27);
+            PesquisarTraje.TabIndex = 86;
+            PesquisarTraje.Text = "Pesquisar";
+            PesquisarTraje.UseVisualStyleBackColor = true;
+            // 
+            // listBoxTrajes
+            // 
+            listBoxTrajes.FormattingEnabled = true;
+            listBoxTrajes.Location = new Point(54, 153);
+            listBoxTrajes.Name = "listBoxTrajes";
+            listBoxTrajes.Size = new Size(373, 384);
+            listBoxTrajes.TabIndex = 82;
+            // 
+            // BRemoverItem
+            // 
+            BRemoverItem.Location = new Point(824, 488);
+            BRemoverItem.Name = "BRemoverItem";
+            BRemoverItem.Size = new Size(127, 49);
+            BRemoverItem.TabIndex = 81;
+            BRemoverItem.Text = "Remover Item";
+            BRemoverItem.UseVisualStyleBackColor = true;
+            // 
+            // LimparTraje
+            // 
+            LimparTraje.Location = new Point(146, 79);
+            LimparTraje.Name = "LimparTraje";
+            LimparTraje.Size = new Size(86, 28);
+            LimparTraje.TabIndex = 77;
+            LimparTraje.Text = "Limpar";
+            LimparTraje.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(54, 38);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Pesquisar por nome ...";
+            textBox1.Size = new Size(290, 27);
+            textBox1.TabIndex = 76;
+            // 
+            // listBoxItems
+            // 
+            listBoxItems.FormattingEnabled = true;
+            listBoxItems.Location = new Point(576, 153);
+            listBoxItems.Name = "listBoxItems";
+            listBoxItems.Size = new Size(375, 324);
+            listBoxItems.TabIndex = 91;
             // 
             // Form1
             // 
@@ -966,6 +1204,8 @@
             tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
+            tabPage4.ResumeLayout(false);
+            tabPage4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -994,16 +1234,16 @@
         private Label label5;
         private ComboBox FiltarTipoAcademico;
         private Label label6;
-        private ComboBox comboBox1;
+        private ComboBox FiltrarGPT;
         private ListBox listBox3;
         private Button button7;
         private Button button8;
         private Label label7;
         private Label label8;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private Button LimparTraje;
-        private Button button10;
+        private ComboBox FiltrarUniPT;
+        private ComboBox FiltrarLojaPT;
+        private Button LimparPT;
+        private Button PesquisarPT;
         private TextBox PesquisarNomeTraje;
         private Button AlterarButtonAP;
         private Button AlterarButtonAA;
@@ -1014,7 +1254,7 @@
         private Label label10;
         private ComboBox comboBox5;
         private Label label11;
-        private ComboBox comboBox6;
+        private ComboBox OrdenarPorPT;
         private Button AdicionarButtonAA;
         private ComboBox FiltrarLojaAcademico;
         private ComboBox FiltrarLojaAP;
@@ -1055,5 +1295,27 @@
         private Label labelFormaAA;
         private Label label41;
         private Label label42;
+        private Button AdicionarAoTrajebuttonAA;
+        private TabPage tabPage4;
+        private Button PesquisarTraje;
+        private ListBox listBoxTrajes;
+        private Button BRemoverItem;
+        private Button LimparTraje;
+        private TextBox textBox1;
+        private Label UniPT;
+        private Label GeneroPT;
+        private Label TamanhoPT;
+        private Label LojaPT;
+        private Label QuantPT;
+        private Label NomePT;
+        private Label label66;
+        private Label label67;
+        private Label label68;
+        private Label label69;
+        private Label label70;
+        private Label label71;
+        private Label label72;
+        private Button BNovoTraje;
+        private ListBox listBoxItems;
     }
 }

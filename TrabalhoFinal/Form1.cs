@@ -912,5 +912,20 @@ namespace TrabalhoFinal
         {
 
         }
+
+        private void AdicionarAoTrajebuttonAA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label68_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
