@@ -1,6 +1,6 @@
-insert into Loja (endereco, nome, telefone) values
-('Rachel Street, N.o 2, Aveiro', 'Rachel Trajes Inc.', 988123987),
-('Rua do Silencio, N.o 4, Aveiro', 'Trajes Rikka e Etc', 982738182);
+insert into Loja (endereco, nome, telefone, letra) values
+('Rachel Street, N.o 2, Aveiro', 'Rachel Trajes Inc.', 988123987, 'R'),
+('Rua do Silencio, N.o 4, Aveiro', 'Trajes Rikka e Etc', 982738182, 'S');
 
 
 
@@ -586,14 +586,14 @@ CREATE TABLE Chapeus (
 -- universidade: aveiro (1-3)
 -- universidade: porto (4-6)
 
-insert into Chapeu (ID, Universidade, Genero) values
-('ARC001', 'Universidade de Aveiro', 'Masculino'),
-('ARC002', 'Universidade de Aveiro', 'Masculino'),
-('ARC003', 'Universidade de Aveiro', 'Feminino'),
-('ARC004', 'Universidade do Porto', 'Masculino'),
-('ARC005', 'Universidade do Porto', 'Masculino'),
-('ARC006', 'Universidade do Porto', 'Feminino'),
-('ARC007', 'Universidade do Porto', 'Feminino');
+insert into Chapeu (ID, Universidade) values
+('ARC001', 'Universidade de Aveiro'),
+('ARC002', 'Universidade de Aveiro'),
+('ARC003', 'Universidade de Aveiro'),
+('ARC004', 'Universidade do Porto'),
+('ARC005', 'Universidade do Porto'),
+('ARC006', 'Universidade do Porto'),
+('ARC007', 'Universidade do Porto');
 
 /*
 CREATE TABLE Nos (
@@ -928,14 +928,14 @@ CREATE TABLE Chapeus (
 -- universidade: aveiro (1-3)
 -- universidade: porto (4-6)
 
-insert into Chapeu (ID, Universidade, Genero) values
-('ASC001', 'Universidade de Aveiro', 'Masculino'),
-('ASC002', 'Universidade de Aveiro', 'Masculino'),
-('ASC003', 'Universidade de Aveiro', 'Feminino'),
-('ASC004', 'Universidade do Porto', 'Masculino'),
-('ASC005', 'Universidade do Porto', 'Masculino'),
-('ASC006', 'Universidade do Porto', 'Feminino'),
-('ASC007', 'Universidade do Porto', 'Feminino');
+insert into Chapeu (ID, Universidade) values
+('ASC001', 'Universidade de Aveiro'),
+('ASC002', 'Universidade de Aveiro'),
+('ASC003', 'Universidade de Aveiro'),
+('ASC004', 'Universidade do Porto'),
+('ASC005', 'Universidade do Porto'),
+('ASC006', 'Universidade do Porto'),
+('ASC007', 'Universidade do Porto');
 
 /*
 CREATE TABLE Nos (

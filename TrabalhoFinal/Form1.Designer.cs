@@ -58,7 +58,6 @@
             label9 = new Label();
             comboBox4 = new ComboBox();
             PesquisarAA = new Button();
-            AlterarButtonAA = new Button();
             label5 = new Label();
             FiltarTipoAcademico = new ComboBox();
             listBoxAA = new ListBox();
@@ -88,7 +87,6 @@
             FiltrarLojaAP = new ComboBox();
             label10 = new Label();
             comboBox5 = new ComboBox();
-            AlterarButtonAP = new Button();
             listBox2 = new ListBox();
             RemoverButtonAP = new Button();
             AdicionarButtonAP = new Button();
@@ -187,7 +185,6 @@
             tabPage1.Controls.Add(label9);
             tabPage1.Controls.Add(comboBox4);
             tabPage1.Controls.Add(PesquisarAA);
-            tabPage1.Controls.Add(AlterarButtonAA);
             tabPage1.Controls.Add(label5);
             tabPage1.Controls.Add(FiltarTipoAcademico);
             tabPage1.Controls.Add(listBoxAA);
@@ -441,16 +438,6 @@
             PesquisarAA.UseVisualStyleBackColor = true;
             PesquisarAA.Click += PesquisarAA_Click_1;
             // 
-            // AlterarButtonAA
-            // 
-            AlterarButtonAA.Location = new Point(627, 488);
-            AlterarButtonAA.Name = "AlterarButtonAA";
-            AlterarButtonAA.Size = new Size(104, 49);
-            AlterarButtonAA.TabIndex = 25;
-            AlterarButtonAA.Text = "Alterar";
-            AlterarButtonAA.UseVisualStyleBackColor = true;
-            AlterarButtonAA.Click += AlterarButtonAA_Click;
-            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -558,7 +545,6 @@
             tabPage2.Controls.Add(FiltrarLojaAP);
             tabPage2.Controls.Add(label10);
             tabPage2.Controls.Add(comboBox5);
-            tabPage2.Controls.Add(AlterarButtonAP);
             tabPage2.Controls.Add(listBox2);
             tabPage2.Controls.Add(RemoverButtonAP);
             tabPage2.Controls.Add(AdicionarButtonAP);
@@ -736,16 +722,6 @@
             comboBox5.Name = "comboBox5";
             comboBox5.Size = new Size(151, 28);
             comboBox5.TabIndex = 29;
-            // 
-            // AlterarButtonAP
-            // 
-            AlterarButtonAP.Location = new Point(627, 488);
-            AlterarButtonAP.Name = "AlterarButtonAP";
-            AlterarButtonAP.Size = new Size(104, 49);
-            AlterarButtonAP.TabIndex = 21;
-            AlterarButtonAP.Text = "Alterar";
-            AlterarButtonAP.UseVisualStyleBackColor = true;
-            AlterarButtonAP.Click += AlterarButtonAP_Click;
             // 
             // listBox2
             // 
@@ -1297,8 +1273,6 @@
         private Button LimparPT;
         private Button PesquisarPT;
         private TextBox PesquisarNomeTraje;
-        private Button AlterarButtonAP;
-        private Button AlterarButtonAA;
         private Button button13;
         private Button PesquisarAA;
         private Label label9;

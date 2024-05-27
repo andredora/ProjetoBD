@@ -1117,9 +1117,9 @@ namespace TrabalhoFinal
                 if (form.ShowDialog() == DialogResult.OK)
                 {
 
-                    //AdicionarTraje(nomeTraje);
                 }
             }
+            PreencherListBox1(GetArtigosAcademico());
         }
         private void AdicionarButtonAP_Click(object sender, EventArgs e)
         {
@@ -1128,9 +1128,10 @@ namespace TrabalhoFinal
                 if (form.ShowDialog() == DialogResult.OK)
                 {
 
-                    //AdicionarTraje(nomeTraje);
                 }
             }
+            PreencherListBox2(GetArtigosPapelaria());
+
 
         }
 
@@ -1839,7 +1840,6 @@ public partial class FormAdicionarAA : Form
             if (form.ShowDialog() == DialogResult.OK)
             {
 
-                //AdicionarTraje(nomeTraje);
             }
         }
     }
@@ -1853,7 +1853,6 @@ public partial class FormAdicionarAA : Form
             if (form.ShowDialog() == DialogResult.OK)
             {
 
-                //AdicionarTraje(nomeTraje);
             }
         }
     }
@@ -1881,8 +1880,7 @@ public partial class FormAdicionarAA : Form
             if (form.ShowDialog() == DialogResult.OK)
             {
 
-                //AdicionarTraje(nomeTraje);
-            }
+      }
         }
     }
 
@@ -2050,14 +2048,63 @@ public partial class FormAdicionarChapeu : Form
         if (string.IsNullOrWhiteSpace(textBox1.Text) ||
             string.IsNullOrWhiteSpace(textBox2.Text) ||
             string.IsNullOrWhiteSpace(textBox3.Text) ||
-            comboBox1.SelectedItem == null)
+            comboBox1.SelectedItem == null ||
+            !int.TryParse(textBox2.Text, out _))
         {
-            MessageBox.Show("Por favor, preencha todos os campos antes de prosseguir.", "Campos não preenchidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Por favor, preencha todos os campos corretamente antes de prosseguir.", "Campos não preenchidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         else
         {
-            // Aqui você pode adicionar a ação que deseja realizar quando todos os campos estiverem preenchidos
-            MessageBox.Show("Todos os campos estão preenchidos. Ação a ser executada...");
+            // Obter a lista de conteúdos
+            List<string> conteudos = ObterConteudos();
+
+            AdicionarChapeu(conteudos);
+            this.Close();
+
+        }
+    }
+
+    // Método separado para obter a lista de conteúdos
+    private List<string> ObterConteudos()
+    {
+        List<string> conteudos = new List<string>
+    {
+        textBox1.Text, //nome
+        textBox2.Text, //quantidade
+        textBox3.Text, //universidade
+        comboBox1.SelectedItem.ToString() //loja
+    };
+
+        return conteudos;
+    }
+
+    private void AdicionarChapeu(List<string> conteudos)
+    {
+        using (SqlConnection connection = getSqlConn())
+        {
+            using (SqlCommand command = new SqlCommand("AddChapeu", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                // Adicionar parâmetros à stored procedure
+                command.Parameters.AddWithValue("@Nome", conteudos[0]);
+                command.Parameters.AddWithValue("@Quantidade", int.Parse(conteudos[1]));  // Convertendo para int
+                command.Parameters.AddWithValue("@End_Loja", conteudos[3]);
+                command.Parameters.AddWithValue("@Universidade", conteudos[2]);
+                
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Chapéu adicionado com sucesso!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao adicionar chapéu: " + ex.Message);
+                }
+               
+
+            }
         }
     }
     private void PreencherComboBoxLojas(List<string> lojas)
@@ -2128,13 +2175,12 @@ public partial class FormAdicionarEmblema : Form
 
 
 
-
+    
 
     public FormAdicionarEmblema()
     {
         InitializeComponent();
         List<string> lojas = GetLojasAcademico();
-
         PreencherComboBoxLojas(lojas);
     }
 
@@ -2183,7 +2229,7 @@ public partial class FormAdicionarEmblema : Form
         this.label3.Name = "label3";
         this.label3.Size = new System.Drawing.Size(46, 13);
         this.label3.TabIndex = 2;
-        this.label3.Text = "Universidade :";
+        this.label3.Text = "Tipo :";
 
         // 
         // label4
@@ -2260,7 +2306,7 @@ public partial class FormAdicionarEmblema : Form
 
 
         // 
-        // FormAdicionarChapeu
+        // FormAdicionarEMBLEMA
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -2282,22 +2328,80 @@ public partial class FormAdicionarEmblema : Form
         this.PerformLayout();
     }
 
+
+
+    
     private void button1_Click(object sender, EventArgs e)
     {
         // Verificar se algum campo não está preenchido
         if (string.IsNullOrWhiteSpace(textBox1.Text) ||
             string.IsNullOrWhiteSpace(textBox2.Text) ||
             string.IsNullOrWhiteSpace(textBox3.Text) ||
-            comboBox1.SelectedItem == null)
+            string.IsNullOrWhiteSpace(textBox4.Text) ||
+            comboBox1.SelectedItem == null ||
+            !int.TryParse(textBox2.Text, out _))
         {
             MessageBox.Show("Por favor, preencha todos os campos antes de prosseguir.", "Campos não preenchidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         else
         {
-            // Aqui você pode adicionar a ação que deseja realizar quando todos os campos estiverem preenchidos
-            MessageBox.Show("Todos os campos estão preenchidos. Ação a ser executada...");
+            // Obter a lista de conteúdos
+            List<string> conteudos = ObterConteudosEmblemas();
+
+            AdicionarEmblema(conteudos);
+            this.Close();
         }
     }
+
+
+    // Método separado para obter a lista de conteúdos
+    private List<string> ObterConteudosEmblemas()
+    {
+        List<string> conteudos = new List<string>
+    {
+        textBox1.Text, //nome
+        textBox2.Text, //quantidade
+        textBox3.Text, //tipo
+        textBox4.Text, //forma
+        comboBox1.SelectedItem.ToString() //loja
+    };
+
+        return conteudos;
+    }
+
+
+    private void AdicionarEmblema(List<string> conteudos)
+    {
+        using (SqlConnection connection = getSqlConn())
+        {
+            using (SqlCommand command = new SqlCommand("AddEmblema", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                // Adicionar parâmetros à stored procedure
+                command.Parameters.AddWithValue("@Nome", conteudos[0]);
+                command.Parameters.AddWithValue("@Quantidade", int.Parse(conteudos[1]));  // Convertendo para int
+                command.Parameters.AddWithValue("@Tipo", conteudos[2]);
+                command.Parameters.AddWithValue("@Forma", conteudos[3]);
+                command.Parameters.AddWithValue("@End_Loja", conteudos[4]);
+
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Emblema adicionado com sucesso!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao adicionar emblema: " + ex.Message);
+                }
+
+
+            }
+        }
+    }
+
     private void PreencherComboBoxLojas(List<string> lojas)
     {
         comboBox1.Items.Clear(); // Limpa os itens existentes
@@ -2367,7 +2471,6 @@ public partial class FormAdicionarPasta : Form
     {
         InitializeComponent();
         List<string> lojas = GetLojasAcademico();
-
         PreencherComboBoxLojas(lojas);
     }
 
@@ -2498,14 +2601,61 @@ public partial class FormAdicionarPasta : Form
         if (string.IsNullOrWhiteSpace(textBox1.Text) ||
             string.IsNullOrWhiteSpace(textBox2.Text) ||
             string.IsNullOrWhiteSpace(textBox3.Text) ||
-            comboBox1.SelectedItem == null)
+            comboBox1.SelectedItem == null ||
+            !int.TryParse(textBox2.Text, out _))
         {
             MessageBox.Show("Por favor, preencha todos os campos antes de prosseguir.", "Campos não preenchidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         else
         {
-            // Aqui você pode adicionar a ação que deseja realizar quando todos os campos estiverem preenchidos
-            MessageBox.Show("Todos os campos estão preenchidos. Ação a ser executada...");
+            List<string> conteudos = ObterConteudosPasta();
+
+            AdicionarPasta(conteudos);
+            this.Close();
+        }
+    }
+
+    // Método separado para obter a lista de conteúdos
+    private List<string> ObterConteudosPasta()
+    {
+        List<string> conteudos = new List<string>
+    {
+        textBox1.Text, //nome
+        textBox2.Text, //quantidade
+        textBox3.Text, //universidade
+        comboBox1.SelectedItem.ToString() //loja
+    };
+
+        return conteudos;
+    }
+
+    private void AdicionarPasta(List<string> conteudos)
+    {
+        using (SqlConnection connection = getSqlConn())
+        {
+            using (SqlCommand command = new SqlCommand("AddPasta", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                // Adicionar parâmetros à stored procedure
+                command.Parameters.AddWithValue("@Nome", conteudos[0]);
+                command.Parameters.AddWithValue("@Quantidade", int.Parse(conteudos[1]));  // Convertendo para int
+                command.Parameters.AddWithValue("@Universidade", conteudos[2]);
+                command.Parameters.AddWithValue("@End_Loja", conteudos[3]);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Pasta adicionada com sucesso!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao adicionar pasta: " + ex.Message);
+                }
+
+
+            }
         }
     }
     private void PreencherComboBoxLojas(List<string> lojas)
@@ -2690,10 +2840,10 @@ public partial class FormAdicionarPin : Form
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         this.ClientSize = new System.Drawing.Size(500, 320); // Aumento do tamanho da janela
         this.Controls.Add(this.button1);
-        this.Controls.Add(this.comboBox1);
-        this.Controls.Add(this.textBox3);
-        this.Controls.Add(this.textBox2);
-        this.Controls.Add(this.textBox1);
+        this.Controls.Add(this.comboBox1); //loja
+        this.Controls.Add(this.textBox3); //tipo
+        this.Controls.Add(this.textBox2); //quantidade
+        this.Controls.Add(this.textBox1); //nome
         this.Controls.Add(this.label4);
         this.Controls.Add(this.label3);
         this.Controls.Add(this.label2);
@@ -2708,16 +2858,65 @@ public partial class FormAdicionarPin : Form
     {
         // Verificar se algum campo não está preenchido
         if (string.IsNullOrWhiteSpace(textBox1.Text) ||
-            string.IsNullOrWhiteSpace(textBox2.Text) ||
-            string.IsNullOrWhiteSpace(textBox3.Text) ||
-            comboBox1.SelectedItem == null)
+              string.IsNullOrWhiteSpace(textBox2.Text) ||
+              string.IsNullOrWhiteSpace(textBox3.Text) ||
+              comboBox1.SelectedItem == null ||
+              !int.TryParse(textBox2.Text, out _))
         {
             MessageBox.Show("Por favor, preencha todos os campos antes de prosseguir.", "Campos não preenchidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         else
         {
-            // Aqui você pode adicionar a ação que deseja realizar quando todos os campos estiverem preenchidos
-            MessageBox.Show("Todos os campos estão preenchidos. Ação a ser executada...");
+            // Obter a lista de conteúdos
+            List<string> conteudos = ObterConteudosPins();
+
+            AdicionarPin(conteudos);
+            this.Close();
+        }
+    }
+
+
+    // Método separado para obter a lista de conteúdos
+    private List<string> ObterConteudosPins()
+    {
+        List<string> conteudos = new List<string>
+    {
+        textBox1.Text, //nome
+        textBox2.Text, //quantidade
+        textBox3.Text, //tipo
+        comboBox1.SelectedItem.ToString() //loja
+    };
+
+        return conteudos;
+    }
+
+    private void AdicionarPin(List<string> conteudos)
+    {
+        using (SqlConnection connection = getSqlConn())
+        {
+            using (SqlCommand command = new SqlCommand("AddPin", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                // Adicionar parâmetros à stored procedure
+                command.Parameters.AddWithValue("@Nome", conteudos[0]);
+                command.Parameters.AddWithValue("@Quantidade", int.Parse(conteudos[1]));  // Convertendo para int
+                command.Parameters.AddWithValue("@Tipo", conteudos[2]);
+                command.Parameters.AddWithValue("@End_Loja", conteudos[3]);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Pin adicionado com sucesso!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao adicionar pin: " + ex.Message);
+                }
+
+
+            }
         }
     }
     private void PreencherComboBoxLojas(List<string> lojas)
@@ -2973,16 +3172,76 @@ public partial class FormAdicionarNo : Form
     {
         // Verificar se algum campo não está preenchido
         if (string.IsNullOrWhiteSpace(textBox1.Text) ||
-            string.IsNullOrWhiteSpace(textBox2.Text) ||
-            string.IsNullOrWhiteSpace(textBox3.Text) ||
-            comboBox1.SelectedItem == null)
+           string.IsNullOrWhiteSpace(textBox2.Text) ||
+           string.IsNullOrWhiteSpace(textBox3.Text) ||
+            string.IsNullOrWhiteSpace(textBox4.Text) ||
+           comboBox1.SelectedItem == null ||
+           !int.TryParse(textBox2.Text, out _))
         {
             MessageBox.Show("Por favor, preencha todos os campos antes de prosseguir.", "Campos não preenchidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         else
         {
-            // Aqui você pode adicionar a ação que deseja realizar quando todos os campos estiverem preenchidos
-            MessageBox.Show("Todos os campos estão preenchidos. Ação a ser executada...");
+            // Obter a lista de conteúdos
+            List<string> conteudos = ObterConteudosNos();
+
+            AdicionarNo(conteudos);
+            this.Close();
+        }
+    }
+
+
+    // Método separado para obter a lista de conteúdos
+    private List<string> ObterConteudosNos()
+    {
+        List<string> conteudos = null;
+        string Cor2 = "NULL";
+        if (!string.IsNullOrWhiteSpace(textBox5.Text)) {
+            Cor2 = textBox5.Text;
+        }
+        conteudos = new List<string>
+    {
+        textBox1.Text, //nome
+        textBox2.Text, //quantidade
+        textBox3.Text, //tipo
+        textBox4.Text, //cor1
+        Cor2,          // cor 2
+        comboBox1.SelectedItem.ToString() //loja
+    };
+
+        return conteudos;
+    }
+
+    private void AdicionarNo(List<string> conteudos)
+    {
+        using (SqlConnection connection = getSqlConn())
+        {
+            using (SqlCommand command = new SqlCommand("AddNo", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                // Adicionar parâmetros à stored procedure
+                command.Parameters.AddWithValue("@Nome", conteudos[0]);
+                command.Parameters.AddWithValue("@Quantidade", int.Parse(conteudos[1]));  // Convertendo para int
+                command.Parameters.AddWithValue("@Tipo", conteudos[2]);
+                command.Parameters.AddWithValue("@Cor1", conteudos[3]);
+                command.Parameters.AddWithValue("@Cor2", conteudos[4]);
+                command.Parameters.AddWithValue("@End_Loja", conteudos[5]);
+
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Nó adicionado com sucesso!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao adicionar nó: " + ex.Message);
+                }
+
+
+            }
         }
     }
     private void PreencherComboBoxLojas(List<string> lojas)
@@ -3114,7 +3373,6 @@ public partial class FormAdicionarAP : Form
             if (form.ShowDialog() == DialogResult.OK)
             {
 
-                //AdicionarTraje(nomeTraje);
             }
         }
     }
@@ -3127,8 +3385,6 @@ public partial class FormAdicionarAP : Form
         {
             if (form.ShowDialog() == DialogResult.OK)
             {
-
-                //AdicionarTraje(nomeTraje);
             }
         }
     }
@@ -3307,16 +3563,71 @@ public partial class FormAdicionarLapis : Form
         if (string.IsNullOrWhiteSpace(textBox1.Text) ||
             string.IsNullOrWhiteSpace(textBox2.Text) ||
             string.IsNullOrWhiteSpace(textBox3.Text) ||
-            comboBox1.SelectedItem == null)
+            string.IsNullOrWhiteSpace(textBox4.Text) ||
+            comboBox1.SelectedItem == null ||
+            !int.TryParse(textBox2.Text, out _))
         {
             MessageBox.Show("Por favor, preencha todos os campos antes de prosseguir.", "Campos não preenchidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         else
         {
-            // Aqui você pode adicionar a ação que deseja realizar quando todos os campos estiverem preenchidos
-            MessageBox.Show("Todos os campos estão preenchidos. Ação a ser executada...");
+            // Obter a lista de conteúdos
+            List<string> conteudos = ObterConteudosLapis();
+
+            AdicionarLapis(conteudos);
+            this.Close();
+
         }
     }
+
+
+    private List<string> ObterConteudosLapis()
+    {
+        List<string> conteudos = new List<string>
+    {
+        textBox1.Text, //nome
+        textBox2.Text, //quantidade
+        textBox3.Text, //marca
+        textBox4.Text, //dureza
+        comboBox1.SelectedItem.ToString() //loja
+    };
+
+        return conteudos;
+    }
+
+    private void AdicionarLapis(List<string> conteudos)
+    {
+        using (SqlConnection connection = getSqlConn())
+        {
+            using (SqlCommand command = new SqlCommand("AddLapis", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                // Adicionar parâmetros à stored procedure
+                command.Parameters.AddWithValue("@Nome", conteudos[0]);
+                command.Parameters.AddWithValue("@Quantidade", int.Parse(conteudos[1]));  // Convertendo para int
+                command.Parameters.AddWithValue("@Marca", conteudos[2]);
+                command.Parameters.AddWithValue("@Dureza", conteudos[3]);
+                command.Parameters.AddWithValue("@End_Loja", conteudos[4]);
+
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Lápis adicionado com sucesso!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao adicionar lápis: " + ex.Message);
+                }
+
+
+            }
+        }
+    }
+
+
     private void PreencherComboBoxLojas(List<string> lojas)
     {
         comboBox1.Items.Clear(); // Limpa os itens existentes
@@ -3560,14 +3871,70 @@ public partial class FormAdicionarCaneta : Form
         if (string.IsNullOrWhiteSpace(textBox1.Text) ||
             string.IsNullOrWhiteSpace(textBox2.Text) ||
             string.IsNullOrWhiteSpace(textBox3.Text) ||
-            comboBox1.SelectedItem == null)
+            string.IsNullOrWhiteSpace(textBox4.Text) ||
+            string.IsNullOrWhiteSpace(textBox5.Text) ||
+            comboBox1.SelectedItem == null ||
+            !int.TryParse(textBox2.Text, out _))
         {
             MessageBox.Show("Por favor, preencha todos os campos antes de prosseguir.", "Campos não preenchidos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         else
         {
-            // Aqui você pode adicionar a ação que deseja realizar quando todos os campos estiverem preenchidos
-            MessageBox.Show("Todos os campos estão preenchidos. Ação a ser executada...");
+            // Obter a lista de conteúdos
+            List<string> conteudos = ObterConteudosCaneta();
+
+            AdicionarCaneta(conteudos);
+            this.Close();
+        }
+    }
+
+
+    private List<string> ObterConteudosCaneta()
+    {
+        List<string> conteudos = new List<string>
+    {
+        textBox1.Text, //nome
+        textBox2.Text, //quantidade
+        textBox3.Text, //marca
+        textBox4.Text, //tipo
+        textBox5.Text, //cor
+        comboBox1.SelectedItem.ToString() //loja
+    };
+
+        return conteudos;
+    }
+
+    private void AdicionarCaneta(List<string> conteudos)
+    {
+        using (SqlConnection connection = getSqlConn())
+        {
+            using (SqlCommand command = new SqlCommand("AddCaneta", connection))
+            {
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                // Adicionar parâmetros à stored procedure
+                command.Parameters.AddWithValue("@Nome", conteudos[0]);
+                command.Parameters.AddWithValue("@Quantidade", int.Parse(conteudos[1]));  // Convertendo para int
+                command.Parameters.AddWithValue("@Marca", conteudos[2]);
+                command.Parameters.AddWithValue("@Tipo", conteudos[3]);
+                command.Parameters.AddWithValue("@Cor", conteudos[4]);
+                command.Parameters.AddWithValue("@End_Loja", conteudos[5]);
+
+
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Caneta adicionado com sucesso!!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao adicionar caneta: " + ex.Message);
+                }
+
+
+            }
         }
     }
     private void PreencherComboBoxLojas(List<string> lojas)
