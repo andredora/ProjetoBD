@@ -129,6 +129,7 @@
             PesquisarPT = new Button();
             PesquisarNomeTraje = new TextBox();
             tabPage4 = new TabPage();
+            BSuperRemovedorDeTraje = new Button();
             NumeroItemsTraje = new Label();
             label22 = new Label();
             listBoxItems = new ListBox();
@@ -1128,6 +1129,7 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(BSuperRemovedorDeTraje);
             tabPage4.Controls.Add(NumeroItemsTraje);
             tabPage4.Controls.Add(label22);
             tabPage4.Controls.Add(listBoxItems);
@@ -1144,6 +1146,16 @@
             tabPage4.TabIndex = 3;
             tabPage4.Text = "Traje";
             tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // BSuperRemovedorDeTraje
+            // 
+            BSuperRemovedorDeTraje.Location = new Point(680, 488);
+            BSuperRemovedorDeTraje.Name = "BSuperRemovedorDeTraje";
+            BSuperRemovedorDeTraje.Size = new Size(127, 49);
+            BSuperRemovedorDeTraje.TabIndex = 94;
+            BSuperRemovedorDeTraje.Text = "Remover Traje";
+            BSuperRemovedorDeTraje.UseVisualStyleBackColor = true;
+            BSuperRemovedorDeTraje.Click += button1_Click_1;
             // 
             // NumeroItemsTraje
             // 
@@ -1169,6 +1181,7 @@
             listBoxItems.Name = "listBoxItems";
             listBoxItems.Size = new Size(445, 284);
             listBoxItems.TabIndex = 91;
+            listBoxItems.SelectedIndexChanged += listBoxItems_SelectedIndexChanged;
             // 
             // BNovoTraje
             // 
@@ -1178,6 +1191,7 @@
             BNovoTraje.TabIndex = 90;
             BNovoTraje.Text = "Novo Traje";
             BNovoTraje.UseVisualStyleBackColor = true;
+            BNovoTraje.Click += BNovoTraje_Click;
             // 
             // PesquisarTraje
             // 
@@ -1205,6 +1219,7 @@
             BRemoverItem.TabIndex = 81;
             BRemoverItem.Text = "Remover Item";
             BRemoverItem.UseVisualStyleBackColor = true;
+            BRemoverItem.Click += BRemoverItem_Click;
             // 
             // LimparTrajeB
             // 
@@ -1357,5 +1372,6 @@
         private Button BAddPeca;
         private Label NumeroItemsTraje;
         private Label label22;
+        private Button BSuperRemovedorDeTraje;
     }
 }
