@@ -64,11 +64,11 @@ namespace TrabalhoFinal
                 using (SqlConnection conn = getSqlConn())
                 {
                     conn.Open();
-                    string query = "GetArtigosPapelaria";
+                    string query = "SELECT ID, Nome FROM ArtigosPapelariaView"; // Nome da view
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandType = CommandType.Text; // Usar CommandType.Text para consultas SQL padrão
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -487,11 +487,11 @@ namespace TrabalhoFinal
                 using (SqlConnection conn = getSqlConn())
                 {
                     conn.Open();
-                    string query = "GetArtigosAcademico";
+                    string query = "SELECT ID, Nome FROM ArtigosAcademicoView";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandType = CommandType.Text;
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -511,7 +511,6 @@ namespace TrabalhoFinal
 
             return artigosAcademico;
         }
-
         private List<string> PesquisarArtigosAcademico(string nome)
         {
             List<string> artigosAcademico = new List<string>();
