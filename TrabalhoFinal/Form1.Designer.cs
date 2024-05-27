@@ -99,6 +99,7 @@
             PesquisarButtonAP = new Button();
             PesquisarNomePapelaria = new TextBox();
             tabPage3 = new TabPage();
+            BAddPeca = new Button();
             UniPT = new Label();
             GeneroPT = new Label();
             TamanhoPT = new Label();
@@ -128,14 +129,15 @@
             PesquisarPT = new Button();
             PesquisarNomeTraje = new TextBox();
             tabPage4 = new TabPage();
+            NumeroItemsTraje = new Label();
+            label22 = new Label();
             listBoxItems = new ListBox();
             BNovoTraje = new Button();
             PesquisarTraje = new Button();
             listBoxTrajes = new ListBox();
             BRemoverItem = new Button();
-            LimparTraje = new Button();
-            textBox1 = new TextBox();
-            BAddPeca = new Button();
+            LimparTrajeB = new Button();
+            textBoxPesquisarTraje = new TextBox();
             tabControl.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
@@ -869,6 +871,16 @@
             tabPage3.UseVisualStyleBackColor = true;
             tabPage3.Click += tabPage3_Click;
             // 
+            // BAddPeca
+            // 
+            BAddPeca.Location = new Point(801, 79);
+            BAddPeca.Name = "BAddPeca";
+            BAddPeca.Size = new Size(150, 49);
+            BAddPeca.TabIndex = 120;
+            BAddPeca.Text = "Adicionar ao Traje";
+            BAddPeca.UseVisualStyleBackColor = true;
+            BAddPeca.Click += button1_Click;
+            // 
             // UniPT
             // 
             UniPT.BackColor = Color.LightSkyBlue;
@@ -1116,13 +1128,15 @@
             // 
             // tabPage4
             // 
+            tabPage4.Controls.Add(NumeroItemsTraje);
+            tabPage4.Controls.Add(label22);
             tabPage4.Controls.Add(listBoxItems);
             tabPage4.Controls.Add(BNovoTraje);
             tabPage4.Controls.Add(PesquisarTraje);
             tabPage4.Controls.Add(listBoxTrajes);
             tabPage4.Controls.Add(BRemoverItem);
-            tabPage4.Controls.Add(LimparTraje);
-            tabPage4.Controls.Add(textBox1);
+            tabPage4.Controls.Add(LimparTrajeB);
+            tabPage4.Controls.Add(textBoxPesquisarTraje);
             tabPage4.Location = new Point(4, 29);
             tabPage4.Name = "tabPage4";
             tabPage4.Padding = new Padding(3);
@@ -1131,12 +1145,29 @@
             tabPage4.Text = "Traje";
             tabPage4.UseVisualStyleBackColor = true;
             // 
+            // NumeroItemsTraje
+            // 
+            NumeroItemsTraje.Location = new Point(606, 449);
+            NumeroItemsTraje.Name = "NumeroItemsTraje";
+            NumeroItemsTraje.Size = new Size(44, 20);
+            NumeroItemsTraje.TabIndex = 93;
+            NumeroItemsTraje.Click += NumeroItemsTraje_Click;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(506, 449);
+            label22.Name = "label22";
+            label22.Size = new Size(94, 20);
+            label22.TabIndex = 92;
+            label22.Text = "Nº de items :";
+            // 
             // listBoxItems
             // 
             listBoxItems.FormattingEnabled = true;
-            listBoxItems.Location = new Point(576, 153);
+            listBoxItems.Location = new Point(506, 153);
             listBoxItems.Name = "listBoxItems";
-            listBoxItems.Size = new Size(375, 324);
+            listBoxItems.Size = new Size(445, 284);
             listBoxItems.TabIndex = 91;
             // 
             // BNovoTraje
@@ -1164,6 +1195,7 @@
             listBoxTrajes.Name = "listBoxTrajes";
             listBoxTrajes.Size = new Size(373, 384);
             listBoxTrajes.TabIndex = 82;
+            listBoxTrajes.SelectedIndexChanged += listBoxTrajes_SelectedIndexChanged;
             // 
             // BRemoverItem
             // 
@@ -1174,32 +1206,24 @@
             BRemoverItem.Text = "Remover Item";
             BRemoverItem.UseVisualStyleBackColor = true;
             // 
-            // LimparTraje
+            // LimparTrajeB
             // 
-            LimparTraje.Location = new Point(146, 79);
-            LimparTraje.Name = "LimparTraje";
-            LimparTraje.Size = new Size(86, 28);
-            LimparTraje.TabIndex = 77;
-            LimparTraje.Text = "Limpar";
-            LimparTraje.UseVisualStyleBackColor = true;
+            LimparTrajeB.Location = new Point(146, 79);
+            LimparTrajeB.Name = "LimparTrajeB";
+            LimparTrajeB.Size = new Size(86, 28);
+            LimparTrajeB.TabIndex = 77;
+            LimparTrajeB.Text = "Limpar";
+            LimparTrajeB.UseVisualStyleBackColor = true;
+            LimparTrajeB.Click += LimparTrajeB_Click;
             // 
-            // textBox1
+            // textBoxPesquisarTraje
             // 
-            textBox1.Location = new Point(54, 38);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Pesquisar por nome ...";
-            textBox1.Size = new Size(290, 27);
-            textBox1.TabIndex = 76;
-            // 
-            // BAddPeca
-            // 
-            BAddPeca.Location = new Point(801, 79);
-            BAddPeca.Name = "BAddPeca";
-            BAddPeca.Size = new Size(150, 49);
-            BAddPeca.TabIndex = 120;
-            BAddPeca.Text = "Adicionar ao Traje";
-            BAddPeca.UseVisualStyleBackColor = true;
-            BAddPeca.Click += button1_Click;
+            textBoxPesquisarTraje.Location = new Point(54, 38);
+            textBoxPesquisarTraje.Name = "textBoxPesquisarTraje";
+            textBoxPesquisarTraje.PlaceholderText = "Pesquisar por nome ...";
+            textBoxPesquisarTraje.Size = new Size(290, 27);
+            textBoxPesquisarTraje.TabIndex = 76;
+            textBoxPesquisarTraje.TextChanged += textBoxPesquisarTraje_TextChanged;
             // 
             // Form1
             // 
@@ -1313,8 +1337,8 @@
         private Button PesquisarTraje;
         private ListBox listBoxTrajes;
         private Button BRemoverItem;
-        private Button LimparTraje;
-        private TextBox textBox1;
+        private Button LimparTrajeB;
+        private TextBox textBoxPesquisarTraje;
         private Label UniPT;
         private Label GeneroPT;
         private Label TamanhoPT;
@@ -1331,5 +1355,7 @@
         private Button BNovoTraje;
         private ListBox listBoxItems;
         private Button BAddPeca;
+        private Label NumeroItemsTraje;
+        private Label label22;
     }
 }

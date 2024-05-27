@@ -17,6 +17,7 @@ namespace TrabalhoFinal
             checkDBConn();
             PreencherListBox2(GetArtigosPapelaria()); // Chama o método para preencher a ListBox ao iniciar o formulário
             PreencherListBox1(GetArtigosAcademico());
+            PreencherlistBoxTrajes(GetTraje());
             PreencherPecasDoTraje(GetPecasDoTraje());
 
 
@@ -33,6 +34,8 @@ namespace TrabalhoFinal
             PreencherFiltrarArtigoAcademico();
             PreencherFiltrarArtigoPapelaria();
             FiltarTipoAcademico.Enabled = false;
+            NumeroItemsTraje.Text = $"0";
+
         }
 
 
@@ -104,7 +107,7 @@ namespace TrabalhoFinal
                         {
                             while (reader.Read())
                             {
-                                string item = $"{reader["ID"]} - {reader["Nome"]}";
+                                string item = $"{reader["ID"]} - {reader["Nome"]} ({reader["Tamanho"]})";
                                 pecasTraje.Add(item);
                             }
                         }
@@ -118,10 +121,6 @@ namespace TrabalhoFinal
 
             return pecasTraje;
         }
-
-
-
-
 
         private List<string> PesquisarArtigosPapelaria(string nome)
         {
@@ -466,6 +465,16 @@ namespace TrabalhoFinal
             foreach (string artigo in artigosAcademico)
             {
                 listBoxAA.Items.Add(artigo);
+            }
+        }
+
+        private void PreencherlistBoxTrajes(List<string> Trajes)
+        {
+            listBoxTrajes.Items.Clear(); // Limpa os itens existentes
+
+            foreach (string traje in Trajes)
+            {
+                listBoxTrajes.Items.Add(traje);
             }
         }
 
@@ -1082,10 +1091,7 @@ namespace TrabalhoFinal
 
         }
 
-        private void FiltrarArtigoPapelaria_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void AdicionarAoTrajebuttonAA_Click(object sender, EventArgs e)
         {
@@ -1106,5 +1112,187 @@ namespace TrabalhoFinal
         {
 
         } // BAddPeca
+
+        private List<string> GetTraje()
+        {
+            List<string> Trajes = new List<string>();
+
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    string query = "Select ID, Nome From Traje";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string item = $"{reader["ID"]} - {reader["Nome"]}";
+                                Trajes.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar traje: " + ex.Message);
+            }
+
+            return Trajes;
+        }
+        private void listBoxTrajes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listBoxTrajes.SelectedItem == null)
+                return;
+
+            string selectedItem = listBoxTrajes.SelectedItem.ToString();
+            string selectedId = selectedItem.Split('-')[0].Trim();
+
+            listBoxItems.Items.Clear();
+
+            using (SqlConnection conn = getSqlConn())
+            {
+                conn.Open();
+                string query = "GetItemsDoTraje";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@id", selectedId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Processar o primeiro conjunto de resultados
+                        while (reader.Read())
+                        {
+                            string item = reader["Nome"].ToString();
+                            listBoxItems.Items.Add(item);
+                        }
+
+                        // Passar para o próximo conjunto de resultados
+                        if (reader.NextResult())
+                        {
+                            while (reader.Read())
+                            {
+                                string item = reader["Nome"].ToString();
+                                listBoxItems.Items.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            NumeroItemsTraje.Text = $"{listBoxItems.Items.Count}";
+
+        }
+
+        private void NumeroItemsTraje_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LimparTrajeB_Click(object sender, EventArgs e)
+        {
+            textBoxPesquisarTraje.Clear();
+            listBoxItems.Items.Clear();
+            listBoxTrajes.SelectedIndex = -1;
+            NumeroItemsTraje.Text = $"0";
+        }
+
+        private void textBoxPesquisarTraje_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FiltrarArtigoPapelaria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FiltarTipoPapelariaMudarLista();
+        }
+
+        private void FiltarTipoPapelariaMudarLista()
+        {
+            // Obtem o item selecionado no ComboBox FiltrarArtigoAcademico
+            string selecionado = FiltrarArtigoPapelaria.SelectedItem?.ToString();
+
+            List<string> items = null;
+
+            switch (selecionado)
+            {
+                case "Caneta":
+                    selecionado = "Caneta";
+                    break;
+                case "Lápis":
+                    selecionado = "Lapis";
+                    break;
+                default:
+                    return;
+            }
+
+            // Preenche o ComboBox FiltarTipoAcademico com os itens correspondentes
+            items = GetPapelariaPorTipo(selecionado);
+            // Ativa o ComboBox FiltarTipoAcademico
+            FiltarTipoAcademico.Enabled = true;
+
+            listBox2.Items.Clear();
+            foreach (string item in items)
+            {
+                listBox2.Items.Add(item);
+            }
+
+        }
+        private List<string> GetPapelariaPorTipo(string tipo)
+        {
+            List<string> itens = new List<string>();
+
+            try
+            {
+                using (SqlConnection conn = getSqlConn())
+                {
+                    conn.Open();
+                    // Lista de tabelas válidas
+                    List<string> validTables = new List<string> { "Caneta", "Lapis" };
+
+                    if (!validTables.Contains(tipo))
+                    {
+                        throw new ArgumentException("Tipo inválido.");
+                    }
+
+                    // Query SQL construída dinamicamente para fazer a junção
+                    string query = $@"
+                    SELECT {tipo}.ID, artigo_papelaria.Nome
+                    FROM {tipo}
+                    INNER JOIN artigo_papelaria ON {tipo}.ID = artigo_papelaria.ID;
+            ";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.CommandType = CommandType.Text;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string item = $"{reader["ID"]} - {reader["Nome"]}";
+                                itens.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao buscar itens por tipo: " + ex.Message);
+            }
+
+            return itens;
+        }
     }
 }
+
+        
+
+       
