@@ -299,20 +299,23 @@ namespace TrabalhoFinal
 
         private void FiltrarArtigoAcademico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FiltarTipoAcademicoMudarLista();
+            if (!string.IsNullOrEmpty(FiltrarArtigoAcademico.SelectedItem?.ToString()))
+                FiltarTipoAcademicoMudarLista();
         }
 
         private void FiltarTipoAcademicoMudarLista()
         {
-            // Obtem o item selecionado no ComboBox FiltrarArtigoAcademico
-            string selecionado = FiltrarArtigoAcademico.SelectedItem?.ToString();
 
-            if (string.IsNullOrEmpty(selecionado))
+            if (string.IsNullOrEmpty(FiltrarArtigoAcademico.SelectedItem?.ToString()))
             {
                 FiltarTipoAcademico.Enabled = false;
                 FiltarTipoAcademico.Items.Clear();
                 return;
             }
+
+            // Obtem o item selecionado no ComboBox FiltrarArtigoAcademico
+            string selecionado = FiltrarArtigoAcademico.SelectedItem?.ToString();
+
 
             List<string> itens = null;
             List<string> items = null;
@@ -357,6 +360,7 @@ namespace TrabalhoFinal
             // Preenche o ComboBox FiltarTipoAcademico com os itens correspondentes
 
             FiltarTipoAcademico.DataSource = itens;
+            FiltarTipoAcademico.SelectedIndex = -1;
 
             items = GetItensPorTipo(selecionado);
 
@@ -454,8 +458,7 @@ namespace TrabalhoFinal
             FiltarTipoAcademico.Enabled = false;
             FiltarTipoAcademico.SelectedIndex = -1;
             FiltarTipoAcademico.Text = string.Empty;
-            List<string> artigosAcademico = GetArtigosAcademico(); // Obtém todos os artigos de academico novamente
-            PreencherListBox1(artigosAcademico); // Atualiza a listBox1 com os artigos de academico
+            PreencherListBox1(GetArtigosAcademico()); // Atualiza a listBox1 com os artigos de academico
         }
 
         private void PreencherListBox1(List<string> artigosAcademico)
@@ -1449,10 +1452,8 @@ namespace TrabalhoFinal
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand("AddTraje", conn))
                 {
-                    string endereco = "Rachel Street, N.o 2, Aveiro";
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Nome", nome);
-                    cmd.Parameters.AddWithValue("@End_Loja", endereco); // Supondo que End_Loja é opcional ou passe o valor correto
 
                     cmd.ExecuteNonQuery();
                 }
