@@ -1,6 +1,4 @@
 -- Drop tables if they exist
-DROP TABLE IF EXISTS Fotocopia;
-DROP TABLE IF EXISTS Fotocopiadora;
 DROP TABLE IF EXISTS Lapis;
 DROP TABLE IF EXISTS Caneta;
 DROP TABLE IF EXISTS Artigo_Papelaria;
@@ -74,8 +72,6 @@ CREATE TABLE Traje (
     Nome VARCHAR(60) NOT NULL,
     Num_Acessorios INT NOT NULL,
     Num_Pecas INT NOT NULL,
-    Completo BIT NOT NULL,
-    End_Loja VARCHAR(60) FOREIGN KEY REFERENCES Loja (Endereco) 
 );
 
 CREATE TABLE Peca_do_Traje_Comprada (
@@ -114,15 +110,3 @@ CREATE TABLE Lapis (
     Dureza VARCHAR(2) NOT NULL
 );
 
-CREATE TABLE Fotocopiadora (
-    ID CHAR(6) NOT NULL PRIMARY KEY,
-    Tipo VARCHAR(30) NOT NULL,
-    End_Loja VARCHAR(60) FOREIGN KEY REFERENCES Loja (Endereco) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE Fotocopia (
-    Documento VARCHAR(60) NOT NULL PRIMARY KEY,
-    ID_maquina CHAR(6) NOT NULL FOREIGN KEY REFERENCES Fotocopiadora (ID) ON UPDATE CASCADE ON DELETE CASCADE,
-    Tipo_Papel VARCHAR(30) NOT NULL,
-    Cores BIT NOT NULL
-);

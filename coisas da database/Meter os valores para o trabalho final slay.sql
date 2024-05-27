@@ -984,9 +984,6 @@ insert into NoA (ID, Cor1, Cor2, Tipo) values
 -- End_Loja VARCHAR(60) FOREIGN KEY REFERENCES Loja (Endereco),
 -- )
 
-insert into traje (id, nome, num_acessorios,  num_pecas, completo,  End_Loja) values
-('T0001', 'andre dora', 6, 3, 0, 'Rua do Silencio, N.o 4, Aveiro');
-
 
 
 insert into Artigo_Papelaria(id, Nome, Marca, Quantidade, End_Loja) values

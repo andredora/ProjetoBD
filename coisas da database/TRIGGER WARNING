@@ -1,3 +1,20 @@
+CREATE OR ALTER TRIGGER trg_delete_Traje
+ON Traje
+INSTEAD OF DELETE
+AS
+BEGIN
+    DELETE FROM Peca_do_Traje_Comprada
+    WHERE ID_Traje IN (SELECT ID FROM DELETED);
+
+    DELETE FROM Artigo_Academico_Comprado
+    WHERE ID_Traje IN (SELECT ID FROM DELETED);
+
+    DELETE FROM Traje WHERE ID IN (SELECT ID FROM DELETED);
+END;
+GO
+
+-- TRIGGERS MEGA GOSTOSOES
+
 CREATE OR ALTER TRIGGER trg_add_remove_peca
 ON peca_do_traje_comprada
 AFTER INSERT, DELETE
