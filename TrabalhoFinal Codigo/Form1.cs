@@ -33,7 +33,6 @@ namespace TrabalhoFinal
             // PREencher as cenas dos filtros confia
             PreencherFiltrarArtigoAcademico();
             PreencherFiltrarArtigoPapelaria();
-            FiltarTipoAcademico.Enabled = false;
             NumeroItemsTraje.Text = $"0";
 
         }
@@ -299,17 +298,17 @@ namespace TrabalhoFinal
 
         private void FiltrarArtigoAcademico_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(FiltrarArtigoAcademico.SelectedItem?.ToString()))
+            if (!string.IsNullOrEmpty(FiltrarArtigoAcademico.SelectedItem?.ToString())) {
                 FiltarTipoAcademicoMudarLista();
+            FiltrarLojaAcademico.SelectedIndex = -1;
+            }
         }
 
         private void FiltarTipoAcademicoMudarLista()
         {
-
+            
             if (string.IsNullOrEmpty(FiltrarArtigoAcademico.SelectedItem?.ToString()))
             {
-                FiltarTipoAcademico.Enabled = false;
-                FiltarTipoAcademico.Items.Clear();
                 return;
             }
 
@@ -324,12 +323,10 @@ namespace TrabalhoFinal
             switch (selecionado)
             {
                 case "Nós":
-                    FiltarTipoAcademico.SelectedIndex = -1;
                     itens = new List<string> { "Azelha", "Coxim Redondo" };
                     selecionado = "NoA";
                     break;
                 case "Emblemas":
-                    FiltarTipoAcademico.SelectedIndex = -1;
                     itens = new List<string>
             {
                 "AAUAv", "Animais", "Cidades", "Clash Royale", "Comida",
@@ -340,7 +337,6 @@ namespace TrabalhoFinal
 
                     break;
                 case "Pins":
-                    FiltarTipoAcademico.SelectedIndex = -1;
                     itens = new List<string> { "Alfinete", "Tacha" };
                     selecionado = "Pin";
                     break;
@@ -351,30 +347,22 @@ namespace TrabalhoFinal
                     selecionado = "Chapeu";
                     break;
                 default:
-                    FiltarTipoAcademico.SelectedIndex = -1;
-                    FiltarTipoAcademico.Enabled = false;
-                    FiltarTipoAcademico.Items.Clear();
                     return;
             }
 
             // Preenche o ComboBox FiltarTipoAcademico com os itens correspondentes
 
-            FiltarTipoAcademico.DataSource = itens;
-            FiltarTipoAcademico.SelectedIndex = -1;
 
             items = GetItensPorTipo(selecionado);
 
             // Ativa o ComboBox FiltarTipoAcademico
-            FiltarTipoAcademico.Enabled = true;
-            if (itens == null)
-            {
-                FiltarTipoAcademico.Enabled = false;
-            }
+     
             listBoxAA.Items.Clear();
             foreach (string item in items)
             {
                 listBoxAA.Items.Add(item);
             }
+            
 
         }
 
@@ -455,9 +443,6 @@ namespace TrabalhoFinal
             FiltrarLojaAcademico.SelectedIndex = -1;
             FiltrarArtigoAcademico.SelectedIndex = -1;
             FiltrarArtigoAcademico.Text = string.Empty;
-            FiltarTipoAcademico.Enabled = false;
-            FiltarTipoAcademico.SelectedIndex = -1;
-            FiltarTipoAcademico.Text = string.Empty;
             PreencherListBox1(GetArtigosAcademico()); // Atualiza a listBox1 com os artigos de academico
         }
 
@@ -662,6 +647,8 @@ namespace TrabalhoFinal
             string nome = PesquisarNomeAA.Text;
             List<string> artigosAcademico = PesquisarArtigosAcademico(nome);
             PreencherListBox1(artigosAcademico);
+            FiltrarArtigoAcademico.SelectedIndex = -1;
+            FiltrarLojaAcademico.SelectedIndex = -1;
         }
 
         private void PesquisarNomeTraje_TextChanged(object sender, EventArgs e)
@@ -761,6 +748,7 @@ namespace TrabalhoFinal
 
 
             PreencherListBox1(artigosAcademico);
+            FiltrarArtigoAcademico.SelectedIndex = -1;
 
         }
 
@@ -1429,8 +1417,6 @@ namespace TrabalhoFinal
 
             // Preenche o ComboBox FiltarTipoAcademico com os itens correspondentes
             items = GetPapelariaPorTipo(selecionado);
-            // Ativa o ComboBox FiltarTipoAcademico
-            FiltarTipoAcademico.Enabled = true;
 
             listBox2.Items.Clear();
             foreach (string item in items)

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj": {}
+    "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal Codigo\\TrabalhoFinal.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj": {
+    "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal Codigo\\TrabalhoFinal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj",
+        "projectUniqueName": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal Codigo\\TrabalhoFinal.csproj",
         "projectName": "TrabalhoFinal",
-        "projectPath": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\TrabalhoFinal.csproj",
+        "projectPath": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal Codigo\\TrabalhoFinal.csproj",
         "packagesPath": "C:\\Users\\fromt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal\\obj\\",
+        "outputPath": "C:\\Users\\fromt\\Desktop\\bd final\\ProjetoBD\\TrabalhoFinal Codigo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\fromt\\AppData\\Roaming\\NuGet\\NuGet.Config",
