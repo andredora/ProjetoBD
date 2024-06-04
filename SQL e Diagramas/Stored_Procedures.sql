@@ -21,7 +21,7 @@ BEGIN
 
     IF @LetraLoja IS NULL
     BEGIN
-        RAISERROR('Endereço da loja não encontrado.', 16, 1);
+        RAISERROR('Endereï¿½o da loja nï¿½o encontrado.', 16, 1);
         RETURN;
     END
 
@@ -30,13 +30,13 @@ BEGIN
 
     WHILE 1 = 1
     BEGIN
-        -- Calcular o próximo ID
+        -- Calcular o prï¿½ximo ID
         SET @NovoID = @IDBase + RIGHT('000' + CAST(@Count AS VARCHAR(3)), 3);
 
-        -- Verificar se o ID já existe
+        -- Verificar se o ID jï¿½ existe
         SELECT @Exists = COUNT(*) FROM Artigo_Academico WHERE ID = @NovoID;
 
-        -- Se o ID não existir, sair do loop
+        -- Se o ID nï¿½o existir, sair do loop
         IF @Exists = 0
             BREAK;
 
@@ -77,7 +77,7 @@ BEGIN
 
     IF @LetraLoja IS NULL
     BEGIN
-        RAISERROR('Endereço da loja não encontrado.', 16, 1);
+        RAISERROR('Endereï¿½o da loja nï¿½o encontrado.', 16, 1);
         RETURN;
     END
 
@@ -86,13 +86,13 @@ BEGIN
 
     WHILE 1 = 1
     BEGIN
-        -- Calcular o próximo ID
+        -- Calcular o prï¿½ximo ID
         SET @NovoID = @IDBase + RIGHT('000' + CAST(@Contador AS VARCHAR(3)), 3);
 
-        -- Verificar se o ID já existe
+        -- Verificar se o ID jï¿½ existe
         SELECT @Exists = COUNT(*) FROM Artigo_Academico WHERE ID = @NovoID;
 
-        -- Se o ID não existir, sair do loop
+        -- Se o ID nï¿½o existir, sair do loop
         IF @Exists = 0
             BREAK;
 
@@ -129,7 +129,7 @@ BEGIN
 
     IF @LetraLoja IS NULL
     BEGIN
-        RAISERROR('Endereço da loja não encontrado.', 16, 1);
+        RAISERROR('Endereï¿½o da loja nï¿½o encontrado.', 16, 1);
         RETURN;
     END
 
@@ -138,13 +138,13 @@ BEGIN
 
     WHILE 1 = 1
     BEGIN
-        -- Calcular o próximo ID
+        -- Calcular o prï¿½ximo ID
         SET @NovoID = @IDBase + RIGHT('000' + CAST(@Contador AS VARCHAR(3)), 3);
 
-        -- Verificar se o ID já existe
+        -- Verificar se o ID jï¿½ existe
         SELECT @Exists = COUNT(*) FROM Artigo_Academico WHERE ID = @NovoID;
 
-        -- Se o ID não existir, sair do loop
+        -- Se o ID nï¿½o existir, sair do loop
         IF @Exists = 0
             BREAK;
 
@@ -181,7 +181,7 @@ BEGIN
 
     IF @LetraLoja IS NULL
     BEGIN
-        RAISERROR('Endereço da loja não encontrado.', 16, 1);
+        RAISERROR('Endereï¿½o da loja nï¿½o encontrado.', 16, 1);
         RETURN;
     END
 
@@ -190,13 +190,13 @@ BEGIN
 
     WHILE 1 = 1
     BEGIN
-        -- Calcular o próximo ID
+        -- Calcular o prï¿½ximo ID
         SET @NovoID = @IDBase + RIGHT('000' + CAST(@Contador AS VARCHAR(3)), 3);
 
-           -- Verificar se o ID já existe
+           -- Verificar se o ID jï¿½ existe
         SELECT @Exists = COUNT(*) FROM Artigo_Academico WHERE ID = @NovoID;
 
-        -- Se o ID não existir, sair do loop
+        -- Se o ID nï¿½o existir, sair do loop
         IF @Exists = 0
             BREAK;
 
@@ -238,7 +238,7 @@ BEGIN
 
     IF @LetraLoja IS NULL
     BEGIN
-        RAISERROR('Endereço da loja não encontrado.', 16, 1);
+        RAISERROR('Endereï¿½o da loja nï¿½o encontrado.', 16, 1);
         RETURN;
     END
 
@@ -247,13 +247,13 @@ BEGIN
 
     WHILE 1 = 1
     BEGIN
-        -- Calcular o próximo ID
+        -- Calcular o prï¿½ximo ID
         SET @NovoID = @IDBase + RIGHT('000' + CAST(@Contador AS VARCHAR(3)), 3);
 
-        -- Verificar se o ID já existe
+        -- Verificar se o ID jï¿½ existe
         SELECT @Exists = COUNT(*) FROM Artigo_Academico WHERE ID = @NovoID;
 
-        -- Se o ID não existir, sair do loop
+        -- Se o ID nï¿½o existir, sair do loop
         IF @Exists = 0
             BREAK;
 
@@ -264,7 +264,7 @@ BEGIN
     -- Verificar se o contador ultrapassou o limite
     IF @Contador > 999
     BEGIN
-        RAISERROR('Não foi possível gerar um novo ID. Limite atingido.', 16, 1);
+        RAISERROR('Nï¿½o foi possï¿½vel gerar um novo ID. Limite atingido.', 16, 1);
         RETURN;
     END
 
@@ -304,7 +304,7 @@ BEGIN
 
     IF @LetraLoja IS NULL
     BEGIN
-        RAISERROR('Endereço da loja não encontrado.', 16, 1);
+        RAISERROR('Endereï¿½o da loja nï¿½o encontrado.', 16, 1);
         RETURN;
     END
 
@@ -313,13 +313,13 @@ BEGIN
 
     WHILE 1 = 1
     BEGIN
-        -- Calcular o próximo ID
+        -- Calcular o prï¿½ximo ID
         SET @NovoID = @IDBase + RIGHT('000' + CAST(@Count AS VARCHAR(3)), 3);
 
-        -- Verificar se o ID já existe
+        -- Verificar se o ID jï¿½ existe
         SELECT @Exists = COUNT(*) FROM Artigo_Papelaria WHERE ID = @NovoID;
 
-        -- Se o ID não existir, sair do loop
+        -- Se o ID nï¿½o existir, sair do loop
         IF @Exists = 0
             BREAK;
 
@@ -366,7 +366,7 @@ BEGIN
 
     IF @LetraLoja IS NULL
     BEGIN
-        RAISERROR('Endereço da loja não encontrado.', 16, 1);
+        RAISERROR('Endereï¿½o da loja nï¿½o encontrado.', 16, 1);
         RETURN;
     END
 
@@ -375,13 +375,13 @@ BEGIN
 
     WHILE 1 = 1
     BEGIN
-        -- Calcular o próximo ID
+        -- Calcular o prï¿½ximo ID
         SET @NovoID = @IDBase + RIGHT('000' + CAST(@Count AS VARCHAR(3)), 3);
 
-        -- Verificar se o ID já existe
+        -- Verificar se o ID jï¿½ existe
         SELECT @Exists = COUNT(*) FROM Artigo_Papelaria WHERE ID = @NovoID;
 
-        -- Se o ID não existir, sair do loop
+        -- Se o ID nï¿½o existir, sair do loop
         IF @Exists = 0
             BREAK;
 
@@ -412,16 +412,16 @@ BEGIN
     -- Inicializar o contador
     SET @Count = 1;
 
-    -- Loop para encontrar um ID disponível
+    -- Loop para encontrar um ID disponï¿½vel
     WHILE 1 = 1
     BEGIN
-        -- Calcular o próximo ID
+        -- Calcular o prï¿½ximo ID
         SET @NewID = 'T' + RIGHT('0000' + CAST(@Count AS VARCHAR(5)), 5);
 
-        -- Verificar se o ID já existe
+        -- Verificar se o ID jï¿½ existe
         SELECT @Exists = COUNT(*) FROM Traje WHERE ID = @NewID;
 
-        -- Se o ID não existir, sair do loop
+        -- Se o ID nï¿½o existir, sair do loop
         IF @Exists = 0
             BREAK;
 
@@ -436,7 +436,7 @@ END;
 GO
 
 --procedure para comprar peca e ela ser adicionada ao traje
--- ela depois é adicionada por causa do trigger
+-- ela depois ï¿½ adicionada por causa do trigger
 CREATE OR ALTER PROCEDURE ComprarPeca
     @IDPECA VARCHAR(6),
     @IDTRAJE VARCHAR(6)
@@ -447,9 +447,8 @@ BEGIN
 
 END;
 GO
-
 --procedure para ocmprar um artigo academico e adicionar ao traje
--- ele depois é adicionado por causa do trigger
+-- ele depois ï¿½ adicionado por causa do trigger
 CREATE OR ALTER PROCEDURE ComprarArtigo
     @IDARTIGO VARCHAR(6),
     @IDTRAJE VARCHAR(6)
@@ -472,7 +471,7 @@ BEGIN
 END
 GO
 
-CREATE OR ALTERPROCEDURE GetPapelariaPorLoja
+CREATE OR ALTER PROCEDURE GetPapelariaPorLoja
     @EnderecoLoja NVARCHAR(255)
 AS
 BEGIN
@@ -496,9 +495,6 @@ BEGIN
     SELECT DISTINCT End_Loja FROM Artigo_Academico;
 END
 GO
-
--- Stored procedure para obter artigos de papelaria
-
 
 -- Stored procedure para pesquisar artigos de papelaria
 CREATE OR ALTER PROCEDURE PesquisarArtigosPapelaria

@@ -2,19 +2,6 @@ insert into Loja (endereco, nome, telefone, letra) values
 ('Rachel Street, N.o 2, Aveiro', 'Rachel Trajes Inc.', 988123987, 'R'),
 ('Rua do Silencio, N.o 4, Aveiro', 'Trajes Rikka e Etc', 982738182, 'S');
 
-
-
-/*
-CREATE TABLE Peca_do_Traje (
-ID CHAR(6) PRIMARY KEY ,
-	Nome VARCHAR(30) NOT NULL,
-	Tamanho VARCHAR(3) NOT NULL,
-	Tipo VARCHAR(3) NOT NULL,
-	End_Loja VARCHAR(60) FOREIGN KEY REFERENCES Loja (Endereco),
-	Genero VARCHAR(1) NOT NULL,
-*/
-
-
 insert into Peca_Do_Traje (ID, Nome, Tamanho, Universidade, End_Loja, Quantidade, Genero) values
 -- ('Rachel Street, N.o 2, Aveiro', 'Rachel Trajes Inc.', 988123987)
 ('PT0001', 'Calcas', '36', 'Universidade De Aveiro', 'Rachel Street, N.o 2, Aveiro', 10, 'M'),
@@ -110,16 +97,6 @@ insert into Peca_Do_Traje (ID, Nome, Tamanho, Universidade, End_Loja, Quantidade
 ('PT0090', 'Gabao', 'M', 'Universidade de Aveiro', 'Rua do Silencio, N.o 4, Aveiro', 44, 'N'),
 ('PT0091', 'Gabao', 'L', 'Universidade de Aveiro', 'Rua do Silencio, N.o 4, Aveiro', 33, 'N');
 
-
-/*
-CREATE TABLE Artigo_Academico (
-	ID CHAR(6) PRIMARY KEY ,
-	Nome VARCHAR(30) NOT NULL,
-	Quantidade int NOT NULL,
-	End_Loja VARCHAR(60) FOREIGN KEY REFERENCES Loja (Endereco),
-
-)
-*/
 
 insert into Artigo_Academico (ID, Nome, Quantidade, End_Loja) values
 -- emblemas rachel street (ARE - ARTIGO RACHEL EMBLEMA)
@@ -349,15 +326,6 @@ insert into Artigo_Academico (ID, Nome, Quantidade, End_Loja) values
 ('ARN020', 'No Ciencias Biomedicas', 100, 'Rachel Street, N.o 2, Aveiro'), -- cor1: azul claro , cor2: amarelo
 ('ARN021', 'No Biotecnologia', 100, 'Rachel Street, N.o 2, Aveiro'); -- cor1: azul claro , cor2: null
 
-/*
-
-CREATE TABLE Emblemas (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Forma VARCHAR(16) NOT NULL,
-	Tipo VARCHAR (16) NOT NULL,
-)
-
-*/
 
 -- emblemas rachel street (ARE - ARTIGO RACHEL EMBLEMA)
 -- tipo: universidades (1 - 2)
@@ -514,12 +482,6 @@ insert into Emblema (ID, Forma, Tipo) values
 -- tipo: animais (25-29)
 -- tipo: jogos (30-32)
 
-/*
-CREATE TABLE Pins (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Tipo VARCHAR (16) NOT NULL,
-)
-*/
 
 insert into Pin (ID, Tipo) values
 ('ARP001', 'Tacha'),
@@ -555,12 +517,7 @@ insert into Pin (ID, Tipo) values
 ('ARP031', 'Tacha'),
 ('ARP032', 'Tacha');
 
-/*
-CREATE TABLE Pastas (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Universidade VARCHAR (32) NOT NULL,
-)
-*/
+
 
 -- Pastas rachel street (ART - ARTIGO RACHEL pasTas)
 -- universidade: aveiro (1-3)
@@ -574,13 +531,7 @@ insert into Pasta (ID, Universidade) values
 ('ART005', 'Universidade do Porto'),
 ('ART006', 'Universidade do Porto');
 
-/*
-CREATE TABLE Chapeus (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Universidade VARCHAR (32) NOT NULL,
-	Genero VARCHAR (16) NOT NULL,	
-)
-*/
+
 
 -- Chapeus rachel street (ARC - ARTIGO RACHEL CHAPEU)
 -- universidade: aveiro (1-3)
@@ -595,14 +546,7 @@ insert into Chapeu (ID, Universidade) values
 ('ARC006', 'Universidade do Porto'),
 ('ARC007', 'Universidade do Porto');
 
-/*
-CREATE TABLE Nos (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Cor1 VARCHAR (16) NOT NULL,
-	Cor2 VARCHAR (16),
-	Tipo VARCHAR (16) NOT NULL,
-)
-*/
+
 
 -- Nos rachel street (ARN - ARTIGO RACHEL NOS)
 -- tipo: coxim redondo (1-3)
@@ -632,9 +576,6 @@ insert into NoA (ID, Cor1, Cor2, Tipo) values
 ('ARN021', 'Azul Claro', NULL, 'Azelha');
 
 
-
-
-
 -- 
 --
 --						=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -644,6 +585,8 @@ insert into NoA (ID, Cor1, Cor2, Tipo) values
 --						=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 --						=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 --						=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
 
 insert into Artigo_Academico (ID, Nome, Quantidade, End_Loja) values
 
@@ -773,36 +716,6 @@ insert into Artigo_Academico (ID, Nome, Quantidade, End_Loja) values
 ('ASN020', 'No Ciencias Biomedicas', 100, 'Rua do Silencio, N.o 4, Aveiro'), -- cor1: azul claro , cor2: amarelo
 ('ASN021', 'No Biotecnologia', 100, 'Rua do Silencio, N.o 4, Aveiro'); -- cor1: azul claro , cor2: null
 
---ACABOU
-
-/*
-
-CREATE TABLE Emblemas (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Forma VARCHAR(16) NOT NULL,
-	Tipo VARCHAR (16) NOT NULL,
-)
-
-
-CREATE TABLE Pastas (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Universidade VARCHAR (32) NOT NULL,
-)
-
-CREATE TABLE Chapeus (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Universidade VARCHAR (32) NOT NULL,
-	Genero VARCHAR (16) NOT NULL,	
-)
-
-CREATE TABLE Nos (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Cor1 VARCHAR (16) NOT NULL,
-	Cor2 VARCHAR (16),
-	Tipo VARCHAR (16) NOT NULL,
-)
-
-*/
 -- emblemas rua do silencio (ASE - ARTIGO SILENCIO EMBLEMA)
 -- tipo: universidades (1 - 2)
 -- tipo: aauav (3)
@@ -867,12 +780,7 @@ insert into Emblema (ID, Forma, Tipo) values
 ('ASE050', 'Bandeira', 'Paises e Regioes'),
 ('ASE051', 'Brasao', 'Paises e Regioes');
 
-/*
-CREATE TABLE Pins (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Tipo VARCHAR (16) NOT NULL,
-)
-*/
+
 
 -- pins rua do silencio street (ASP - ARTIGO SILENCIO PIN)
 -- tipo: universidades (1-2)
@@ -897,12 +805,6 @@ insert into Pin (ID, Tipo) values
 ('ASP013', 'Alfinete'),
 ('ASP014', 'Tacha');
 
-/*
-CREATE TABLE Pastas (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Universidade VARCHAR (32) NOT NULL,
-)
-*/
 
 -- Pastas rua do silencio (AST - ARTIGO SILENCIO pasTas)
 -- universidade: aveiro (1-3)
@@ -916,13 +818,6 @@ insert into Pasta (ID, Universidade) values
 ('AST005', 'Universidade do Porto'),
 ('AST006', 'Universidade do Porto');
 
-/*
-CREATE TABLE Chapeus (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Universidade VARCHAR (32) NOT NULL,
-	Genero VARCHAR (16) NOT NULL,	
-)
-*/
 
 -- Chapeus rua do silencio (ASC - ARTIGO SILENCIO CHAPEU)
 -- universidade: aveiro (1-3)
@@ -937,14 +832,6 @@ insert into Chapeu (ID, Universidade) values
 ('ASC006', 'Universidade do Porto'),
 ('ASC007', 'Universidade do Porto');
 
-/*
-CREATE TABLE Nos (
-	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Academico (ID) ,
-	Cor1 VARCHAR (16) NOT NULL,
-	Cor2 VARCHAR (16),
-	Tipo VARCHAR (16) NOT NULL,
-)
-*/
 
 -- Nos rua do silencio (ASN - ARTIGO SILENCIO NOS)
 -- tipo: coxim redondo (1-3)
@@ -972,17 +859,6 @@ insert into NoA (ID, Cor1, Cor2, Tipo) values
 ('ASN019', 'Azul Claro', NULL, 'Azelha'),
 ('ASN020', 'Azul Claro', 'Amarelo', 'Azelha'),
 ('ASN021', 'Azul Claro', NULL, 'Azelha');
-
-
-
-
--- CREATE TABLE Artigo_Papelaria (
--- ID CHAR(6) PRIMARY KEY ,
--- Nome VARCHAR(30) NOT NULL,
--- Marca VARCHAR(30) NOT NULL,
--- Quantidade int NOT NULL,
--- End_Loja VARCHAR(60) FOREIGN KEY REFERENCES Loja (Endereco),
--- )
 
 
 
@@ -1076,11 +952,6 @@ insert into Artigo_Papelaria(id, Nome, Marca, Quantidade, End_Loja) values
 ('PSL009', 'Lapis 2B', 'Rotstring', 12, 'Rua do Silencio, N.o 4, Aveiro');
 
 
---CREATE TABLE Caneta (
---	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Papelaria (ID),
---	Tipo VARCHAR(30) NOT NULL,
---	Cor VARCHAR (16) NOT NULL,
---)
 
 insert into Caneta(id, Tipo, Cor) values
 ('PRC001', 'Gel','Preta'),
@@ -1140,10 +1011,6 @@ insert into Caneta(id, Tipo, Cor) values
 ('PSC023', 'Ponta Fina','Amarela');
 
 
---CREATE TABLE Lapis (
---	ID CHAR(6) NOT NULL PRIMARY KEY REFERENCES Artigo_Papelaria (ID),
---	Dureza VARCHAR(2) NOT NULL,
---)
 
 insert into Lapis(id, Dureza) values
 -- tipo: HB  Rachel

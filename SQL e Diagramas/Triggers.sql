@@ -13,8 +13,6 @@ BEGIN
 END;
 GO
 
--- TRIGGERS MEGA GOSTOSOES
-
 CREATE OR ALTER TRIGGER trg_add_remove_peca
 ON peca_do_traje_comprada
 AFTER INSERT, DELETE
