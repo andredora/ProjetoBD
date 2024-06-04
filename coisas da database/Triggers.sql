@@ -23,33 +23,33 @@ BEGIN
     DECLARE @ID_Traje CHAR(6);
     DECLARE @ID_Peca CHAR(6);
 
-    -- Handle insert case
+    -- insert case
     IF EXISTS (SELECT * FROM inserted)
     BEGIN
         SELECT @ID_Traje = ID_Traje, @ID_Peca = ID_Peca FROM inserted;
 
-        -- Increment Num_Pecas in Traje table
+        -- Increment Num_Pecas in Traje 
         UPDATE Traje
         SET Num_Pecas = Num_Pecas + 1
         WHERE ID = @ID_Traje;
 
-        -- Decrement Quantidade in Peca_do_Traje table
+        -- Decrement Quantidade in Peca_do_Traje 
         UPDATE Peca_do_Traje
         SET Quantidade = Quantidade - 1
         WHERE ID = @ID_Peca;
     END
 
-    -- Handle delete case
+    -- delete case
     IF EXISTS (SELECT * FROM deleted)
     BEGIN
         SELECT @ID_Traje = ID_Traje, @ID_Peca = ID_Peca FROM deleted;
 
-        -- Decrement Num_Pecas in Traje table
+        -- Decrement Num_Pecas in Traje 
         UPDATE Traje
         SET Num_Pecas = Num_Pecas - 1
         WHERE ID = @ID_Traje;
 
-        -- Increment Quantidade in Peca_do_Traje table
+        -- Increment Quantidade in Peca_do_Traje 
         UPDATE Peca_do_Traje
         SET Quantidade = Quantidade + 1
         WHERE ID = @ID_Peca;
@@ -66,33 +66,33 @@ BEGIN
     DECLARE @ID_Traje CHAR(6);
     DECLARE @ID_Artigo CHAR(6);
 
-    -- Handle insert case
+    -- insert case
     IF EXISTS (SELECT * FROM inserted)
     BEGIN
         SELECT @ID_Traje = ID_Traje, @ID_Artigo = ID_Artigo FROM inserted;
 
-        -- Increment Num_Acessorios in Traje table
+        -- Increment Num_Acessorios in Traje 
         UPDATE Traje
         SET Num_Acessorios = Num_Acessorios + 1
         WHERE ID = @ID_Traje;
 
-        -- Decrement Quantidade in Artigo_Academico table
+        -- Decrement Quantidade in Artigo_Academico 
         UPDATE Artigo_Academico
         SET Quantidade = Quantidade - 1
         WHERE ID = @ID_Artigo;
     END
 
-    -- Handle delete case
+    -- delete case
     IF EXISTS (SELECT * FROM deleted)
     BEGIN
         SELECT @ID_Traje = ID_Traje, @ID_Artigo = ID_Artigo FROM deleted;
 
-        -- Decrement Num_Acessorios in Traje table
+        -- Decrement Num_Acessorios in Traje 
         UPDATE Traje
         SET Num_Acessorios = Num_Acessorios - 1
         WHERE ID = @ID_Traje;
 
-        -- Increment Quantidade in Artigo_Academico table
+        -- Increment Quantidade in Artigo_Academico 
         UPDATE Artigo_Academico
         SET Quantidade = Quantidade + 1
         WHERE ID = @ID_Artigo;
@@ -118,8 +118,7 @@ BEGIN
         INNER JOIN Artigo_Academico AS AA ON AAC.ID_Artigo = AA.ID
         WHERE AAC.ID_Traje = @ID_Traje;
 
-        -- Adicionar/subtrair da quantidade das peças de traje
-        -- (considerando que também haja uma tabela Peca_do_Traje)
+  
     END;
 END;
 GO
@@ -135,14 +134,11 @@ BEGIN
 
     IF @@ROWCOUNT > 0
     BEGIN
-        -- Reduzir a quantidade de peças de traje apenas uma vez
         UPDATE Peca_Do_Traje
         SET Quantidade = Quantidade + 1
         FROM Peca_Do_Traje_Comprada AS PDTC 
         INNER JOIN Peca_Do_Traje AS PDT ON PDTC.ID_Peca = PDT.ID
         WHERE PDTC.ID_Traje = @ID_Traje;
 
-        -- Adicionar/subtrair da quantidade da peça de traje
-        -- Aqui você adiciona a lógica para manipular a quantidade da peça de traje
     END;
 END;

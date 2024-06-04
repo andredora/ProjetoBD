@@ -111,18 +111,9 @@
             label70 = new Label();
             label71 = new Label();
             label72 = new Label();
-            label11 = new Label();
-            OrdenarPorPT = new ComboBox();
             button13 = new Button();
-            label6 = new Label();
-            FiltrarGPT = new ComboBox();
             listBox3 = new ListBox();
             button7 = new Button();
-            button8 = new Button();
-            label7 = new Label();
-            label8 = new Label();
-            FiltrarUniPT = new ComboBox();
-            FiltrarLojaPT = new ComboBox();
             LimparPT = new Button();
             PesquisarPT = new Button();
             PesquisarNomeTraje = new TextBox();
@@ -594,6 +585,7 @@
             LabelEnderecoAP.Name = "LabelEnderecoAP";
             LabelEnderecoAP.Size = new Size(508, 27);
             LabelEnderecoAP.TabIndex = 50;
+            LabelEnderecoAP.Click += LabelEnderecoAP_Click;
             // 
             // LabelQuantidadeAP
             // 
@@ -610,6 +602,7 @@
             LabelMarcaAP.Name = "LabelMarcaAP";
             LabelMarcaAP.Size = new Size(265, 27);
             LabelMarcaAP.TabIndex = 48;
+            LabelMarcaAP.Click += LabelMarcaAP_Click;
             // 
             // label20
             // 
@@ -824,18 +817,9 @@
             tabPage3.Controls.Add(label70);
             tabPage3.Controls.Add(label71);
             tabPage3.Controls.Add(label72);
-            tabPage3.Controls.Add(label11);
-            tabPage3.Controls.Add(OrdenarPorPT);
             tabPage3.Controls.Add(button13);
-            tabPage3.Controls.Add(label6);
-            tabPage3.Controls.Add(FiltrarGPT);
             tabPage3.Controls.Add(listBox3);
             tabPage3.Controls.Add(button7);
-            tabPage3.Controls.Add(button8);
-            tabPage3.Controls.Add(label7);
-            tabPage3.Controls.Add(label8);
-            tabPage3.Controls.Add(FiltrarUniPT);
-            tabPage3.Controls.Add(FiltrarLojaPT);
             tabPage3.Controls.Add(LimparPT);
             tabPage3.Controls.Add(PesquisarPT);
             tabPage3.Controls.Add(PesquisarNomeTraje);
@@ -850,7 +834,7 @@
             // 
             // BAddPeca
             // 
-            BAddPeca.Location = new Point(801, 79);
+            BAddPeca.Location = new Point(800, 38);
             BAddPeca.Name = "BAddPeca";
             BAddPeca.Size = new Size(150, 49);
             BAddPeca.TabIndex = 120;
@@ -970,48 +954,15 @@
             label72.Size = new Size(0, 20);
             label72.TabIndex = 107;
             // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(443, 79);
-            label11.Name = "label11";
-            label11.Size = new Size(93, 20);
-            label11.TabIndex = 39;
-            label11.Text = "Ordenar por:";
-            // 
-            // OrdenarPorPT
-            // 
-            OrdenarPorPT.FormattingEnabled = true;
-            OrdenarPorPT.Location = new Point(443, 102);
-            OrdenarPorPT.Name = "OrdenarPorPT";
-            OrdenarPorPT.Size = new Size(151, 28);
-            OrdenarPorPT.TabIndex = 38;
-            // 
             // button13
             // 
-            button13.Location = new Point(626, 488);
+            button13.Location = new Point(846, 488);
             button13.Name = "button13";
             button13.Size = new Size(104, 49);
             button13.TabIndex = 37;
             button13.Text = "Alterar";
             button13.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(799, 15);
-            label6.Name = "label6";
-            label6.Size = new Size(126, 20);
-            label6.TabIndex = 36;
-            label6.Text = "Filtrar por Género";
-            // 
-            // FiltrarGPT
-            // 
-            FiltrarGPT.FormattingEnabled = true;
-            FiltrarGPT.Location = new Point(799, 38);
-            FiltrarGPT.Name = "FiltrarGPT";
-            FiltrarGPT.Size = new Size(151, 28);
-            FiltrarGPT.TabIndex = 35;
+            button13.Click += button13_Click;
             // 
             // listBox3
             // 
@@ -1030,50 +981,7 @@
             button7.TabIndex = 33;
             button7.Text = "Remover";
             button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            button8.Location = new Point(846, 488);
-            button8.Name = "button8";
-            button8.Size = new Size(104, 49);
-            button8.TabIndex = 32;
-            button8.Text = "Adicionar";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(600, 15);
-            label7.Name = "label7";
-            label7.Size = new Size(137, 20);
-            label7.TabIndex = 31;
-            label7.Text = "Filtrar Universidade";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(443, 15);
-            label8.Name = "label8";
-            label8.Size = new Size(106, 20);
-            label8.TabIndex = 30;
-            label8.Text = "Filtrar por Loja";
-            // 
-            // FiltrarUniPT
-            // 
-            FiltrarUniPT.FormattingEnabled = true;
-            FiltrarUniPT.Location = new Point(600, 38);
-            FiltrarUniPT.Name = "FiltrarUniPT";
-            FiltrarUniPT.Size = new Size(193, 28);
-            FiltrarUniPT.TabIndex = 29;
-            FiltrarUniPT.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
-            // 
-            // FiltrarLojaPT
-            // 
-            FiltrarLojaPT.FormattingEnabled = true;
-            FiltrarLojaPT.Location = new Point(443, 38);
-            FiltrarLojaPT.Name = "FiltrarLojaPT";
-            FiltrarLojaPT.Size = new Size(151, 28);
-            FiltrarLojaPT.TabIndex = 28;
+            button7.Click += button7_Click;
             // 
             // LimparPT
             // 
@@ -1261,15 +1169,8 @@
         private TextBox PesquisarNomePapelaria;
         private Label label5;
         private ComboBox FiltarTipoAcademico;
-        private Label label6;
-        private ComboBox FiltrarGPT;
         private ListBox listBox3;
         private Button button7;
-        private Button button8;
-        private Label label7;
-        private Label label8;
-        private ComboBox FiltrarUniPT;
-        private ComboBox FiltrarLojaPT;
         private Button LimparPT;
         private Button PesquisarPT;
         private TextBox PesquisarNomeTraje;
@@ -1279,8 +1180,6 @@
         private ComboBox comboBox4;
         private Label label10;
         private ComboBox comboBox5;
-        private Label label11;
-        private ComboBox OrdenarPorPT;
         private Button AdicionarButtonAA;
         private ComboBox FiltrarLojaAcademico;
         private ComboBox FiltrarLojaAP;
